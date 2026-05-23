@@ -1,0 +1,1928 @@
+{
+  "Q1_tour_recency": {
+    "overall": {
+      "n_pairs": 824,
+      "mean": 0.0587,
+      "median": 0.0,
+      "stdev": 0.1093,
+      "min": 0.0,
+      "max": 0.8571
+    },
+    "by_gap": {
+      "1_day": {
+        "n_pairs": 157,
+        "mean": 0.0398,
+        "median": 0.0,
+        "stdev": 0.1099,
+        "min": 0.0,
+        "max": 0.6667
+      },
+      "2_day": {
+        "n_pairs": 191,
+        "mean": 0.0256,
+        "median": 0.0,
+        "stdev": 0.0832,
+        "min": 0.0,
+        "max": 0.6364
+      },
+      "3_day": {
+        "n_pairs": 160,
+        "mean": 0.028,
+        "median": 0.0,
+        "stdev": 0.0733,
+        "min": 0.0,
+        "max": 0.6667
+      },
+      "4_5_day": {
+        "n_pairs": 316,
+        "mean": 0.1038,
+        "median": 0.0769,
+        "stdev": 0.1221,
+        "min": 0.0,
+        "max": 0.8571
+      }
+    },
+    "post_2024_overall": {
+      "n_pairs": 293,
+      "mean": 0.0364,
+      "median": 0.0,
+      "stdev": 0.0771,
+      "min": 0.0,
+      "max": 0.5
+    },
+    "post_2024_by_gap": {
+      "1_day": {
+        "n_pairs": 40,
+        "mean": 0.0083,
+        "median": 0.0,
+        "stdev": 0.0408,
+        "min": 0.0,
+        "max": 0.25
+      },
+      "2_day": {
+        "n_pairs": 61,
+        "mean": 0.0076,
+        "median": 0.0,
+        "stdev": 0.0496,
+        "min": 0.0,
+        "max": 0.3846
+      },
+      "3_day": {
+        "n_pairs": 67,
+        "mean": 0.0151,
+        "median": 0.0,
+        "stdev": 0.0473,
+        "min": 0.0,
+        "max": 0.2
+      },
+      "4_day": {
+        "n_pairs": 64,
+        "mean": 0.0467,
+        "median": 0.0,
+        "stdev": 0.0651,
+        "min": 0.0,
+        "max": 0.25
+      },
+      "5_day": {
+        "n_pairs": 61,
+        "mean": 0.0964,
+        "median": 0.0769,
+        "stdev": 0.1118,
+        "min": 0.0,
+        "max": 0.5
+      }
+    }
+  },
+  "Q2_anchor_repeats": {
+    "n_same_venue_pairs": 105,
+    "pairs_with_any_repeat": 11,
+    "total_repeat_song_instances": 10,
+    "n1_total_songs_pooled": 1353,
+    "pooled_repeat_rate": 0.0074,
+    "songs_by_repeat_count": [
+      {
+        "song": "Big Modern!",
+        "pair_instances": 2
+      },
+      {
+        "song": "Ghostbusters",
+        "pair_instances": 1
+      },
+      {
+        "song": "Borne",
+        "pair_instances": 1
+      },
+      {
+        "song": "Madhuvan",
+        "pair_instances": 1
+      },
+      {
+        "song": "Echo of a Rose",
+        "pair_instances": 1
+      },
+      {
+        "song": "Sirius",
+        "pair_instances": 1
+      },
+      {
+        "song": "Green River",
+        "pair_instances": 1
+      },
+      {
+        "song": "Slow Ready",
+        "pair_instances": 1
+      },
+      {
+        "song": "Dramophone",
+        "pair_instances": 1
+      }
+    ],
+    "since_2024": {
+      "n_same_venue_pairs": 39,
+      "n1_total_songs_pooled": 531,
+      "total_repeat_song_instances": 7,
+      "pooled_repeat_rate": 0.0132,
+      "songs_by_repeat_count": [
+        {
+          "song": "Big Modern!",
+          "pair_instances": 2
+        },
+        {
+          "song": "Echo of a Rose",
+          "pair_instances": 1
+        },
+        {
+          "song": "Sirius",
+          "pair_instances": 1
+        },
+        {
+          "song": "Green River",
+          "pair_instances": 1
+        },
+        {
+          "song": "Slow Ready",
+          "pair_instances": 1
+        },
+        {
+          "song": "Dramophone",
+          "pair_instances": 1
+        }
+      ],
+      "events": [
+        {
+          "date_n1": "2024-09-03",
+          "date_n2": "2024-09-04",
+          "song": "Echo of a Rose"
+        },
+        {
+          "date_n1": "2024-12-13",
+          "date_n2": "2024-12-14",
+          "song": "Sirius"
+        },
+        {
+          "date_n1": "2024-12-30",
+          "date_n2": "2024-12-31",
+          "song": "Big Modern!"
+        },
+        {
+          "date_n1": "2025-05-27",
+          "date_n2": "2025-05-28",
+          "song": "Big Modern!"
+        },
+        {
+          "date_n1": "2025-05-27",
+          "date_n2": "2025-05-28",
+          "song": "Green River"
+        },
+        {
+          "date_n1": "2025-09-23",
+          "date_n2": "2025-09-24",
+          "song": "Slow Ready"
+        },
+        {
+          "date_n1": "2025-12-12",
+          "date_n2": "2025-12-13",
+          "song": "Dramophone"
+        }
+      ]
+    }
+  },
+  "Q9_repeat_events": {
+    "n_pairs": 105,
+    "events": [
+      {
+        "date_n1": "2018-10-26",
+        "date_n2": "2018-10-27",
+        "song": "Ghostbusters"
+      },
+      {
+        "date_n1": "2022-06-24",
+        "date_n2": "2022-06-25",
+        "song": "Borne"
+      },
+      {
+        "date_n1": "2023-04-14",
+        "date_n2": "2023-04-15",
+        "song": "Madhuvan"
+      },
+      {
+        "date_n1": "2024-09-03",
+        "date_n2": "2024-09-04",
+        "song": "Echo of a Rose"
+      },
+      {
+        "date_n1": "2024-12-13",
+        "date_n2": "2024-12-14",
+        "song": "Sirius"
+      },
+      {
+        "date_n1": "2024-12-30",
+        "date_n2": "2024-12-31",
+        "song": "Big Modern!"
+      },
+      {
+        "date_n1": "2025-05-27",
+        "date_n2": "2025-05-28",
+        "song": "Big Modern!"
+      },
+      {
+        "date_n1": "2025-05-27",
+        "date_n2": "2025-05-28",
+        "song": "Green River"
+      },
+      {
+        "date_n1": "2025-09-23",
+        "date_n2": "2025-09-24",
+        "song": "Slow Ready"
+      },
+      {
+        "date_n1": "2025-12-12",
+        "date_n2": "2025-12-13",
+        "song": "Dramophone"
+      }
+    ],
+    "per_pair_overlap": [
+      {
+        "date_n1": "2018-06-01",
+        "date_n2": "2018-06-02",
+        "venue": "Octave",
+        "n1_songs": 20,
+        "n2_songs": 17,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2018-09-21",
+        "date_n2": "2018-09-22",
+        "venue": "Resonance Music & Arts Festival",
+        "n1_songs": 5,
+        "n2_songs": 5,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2018-10-26",
+        "date_n2": "2018-10-27",
+        "venue": "BRYAC Black Rock",
+        "n1_songs": 12,
+        "n2_songs": 11,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0833
+      },
+      {
+        "date_n1": "2019-08-16",
+        "date_n2": "2019-08-17",
+        "venue": "Birds of a Feather Music &amp; Arts Festival",
+        "n1_songs": 11,
+        "n2_songs": 8,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2019-09-19",
+        "date_n2": "2019-09-21",
+        "venue": "Coopers Lake",
+        "n1_songs": 6,
+        "n2_songs": 6,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2019-12-07",
+        "date_n2": "2019-12-08",
+        "venue": "Old Town Pub &amp; Restaurant",
+        "n1_songs": 14,
+        "n2_songs": 15,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2020-01-14",
+        "date_n2": "2020-01-17",
+        "venue": "Moon Palace",
+        "n1_songs": 5,
+        "n2_songs": 9,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2020-01-17",
+        "date_n2": "2020-01-18",
+        "venue": "Moon Palace",
+        "n1_songs": 9,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2020-02-07",
+        "date_n2": "2020-02-08",
+        "venue": "The Troubadour",
+        "n1_songs": 6,
+        "n2_songs": 6,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2020-02-29",
+        "date_n2": "2020-03-01",
+        "venue": "Rock Legends Cruise",
+        "n1_songs": 17,
+        "n2_songs": 7,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2020-06-19",
+        "date_n2": "2020-06-20",
+        "venue": "Goose Community Rec Center",
+        "n1_songs": 14,
+        "n2_songs": 16,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0714
+      },
+      {
+        "date_n1": "2020-06-26",
+        "date_n2": "2020-06-27",
+        "venue": "Goose Community Rec Center",
+        "n1_songs": 14,
+        "n2_songs": 19,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0714
+      },
+      {
+        "date_n1": "2020-09-11",
+        "date_n2": "2020-09-12",
+        "venue": "Yarmouth Drive-In",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2020-09-16",
+        "date_n2": "2020-09-17",
+        "venue": "South Farms",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2020-11-06",
+        "date_n2": "2020-11-07",
+        "venue": "South Farms",
+        "n1_songs": 15,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-05-03",
+        "date_n2": "2021-05-04",
+        "venue": "Frederick Fairgrounds",
+        "n1_songs": 4,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-05-08",
+        "date_n2": "2021-05-09",
+        "venue": "The Caverns Above Ground Amphitheater",
+        "n1_songs": 13,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-06-12",
+        "date_n2": "2021-06-13",
+        "venue": "Westville Music Bowl",
+        "n1_songs": 14,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-06-15",
+        "date_n2": "2021-06-16",
+        "venue": "Silver Lake Twin Drive-In Theatre",
+        "n1_songs": 12,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-06-18",
+        "date_n2": "2021-06-19",
+        "venue": "Legend Valley",
+        "n1_songs": 13,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-07-02",
+        "date_n2": "2021-07-03",
+        "venue": "The Pines Music Park",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-07-06",
+        "date_n2": "2021-07-07",
+        "venue": "Pine Creek Lodge",
+        "n1_songs": 12,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-07-09",
+        "date_n2": "2021-07-10",
+        "venue": "Sculpture Park at Denver Performing Arts Center",
+        "n1_songs": 13,
+        "n2_songs": 15,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-08-21",
+        "date_n2": "2021-08-22",
+        "venue": "Oak Ridge Farm",
+        "n1_songs": 11,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-10-08",
+        "date_n2": "2021-10-09",
+        "venue": "Terminal 5",
+        "n1_songs": 12,
+        "n2_songs": 19,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-10-28",
+        "date_n2": "2021-10-29",
+        "venue": "State Theater",
+        "n1_songs": 11,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-10-30",
+        "date_n2": "2021-10-31",
+        "venue": "The Palladium",
+        "n1_songs": 14,
+        "n2_songs": 16,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-11-06",
+        "date_n2": "2021-11-07",
+        "venue": "The Eastern",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-11-11",
+        "date_n2": "2021-11-12",
+        "venue": "Historic Scoot Inn",
+        "n1_songs": 12,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-11-21",
+        "date_n2": "2021-11-22",
+        "venue": "The Mission Ballroom",
+        "n1_songs": 14,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2021-12-30",
+        "date_n2": "2021-12-31",
+        "venue": "Riviera Theatre",
+        "n1_songs": 14,
+        "n2_songs": 17,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-01-29",
+        "date_n2": "2022-01-30",
+        "venue": "The Regency Ballroom",
+        "n1_songs": 12,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-02-03",
+        "date_n2": "2022-02-04",
+        "venue": "Wonder Ballroom",
+        "n1_songs": 11,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-03-01",
+        "date_n2": "2022-03-02",
+        "venue": "9:30 Club",
+        "n1_songs": 13,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-03-04",
+        "date_n2": "2022-03-05",
+        "venue": "Brooklyn Bowl",
+        "n1_songs": 14,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-03-11",
+        "date_n2": "2022-03-12",
+        "venue": "The Fillmore",
+        "n1_songs": 14,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-05-27",
+        "date_n2": "2022-05-28",
+        "venue": "Westville Music Bowl",
+        "n1_songs": 12,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-06-10",
+        "date_n2": "2022-06-11",
+        "venue": "Legend Valley",
+        "n1_songs": 12,
+        "n2_songs": 10,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-06-24",
+        "date_n2": "2022-06-25",
+        "venue": "Radio City Music Hall",
+        "n1_songs": 15,
+        "n2_songs": 21,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0667
+      },
+      {
+        "date_n1": "2022-08-12",
+        "date_n2": "2022-08-13",
+        "venue": "Chrysalis",
+        "n1_songs": 11,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-08-16",
+        "date_n2": "2022-08-17",
+        "venue": "Dillon Amphitheatre",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-09-29",
+        "date_n2": "2022-09-30",
+        "venue": "The National",
+        "n1_songs": 13,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-10-01",
+        "date_n2": "2022-10-02",
+        "venue": "Pullman Yards",
+        "n1_songs": 14,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-10-06",
+        "date_n2": "2022-10-07",
+        "venue": "Joy Theater",
+        "n1_songs": 14,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-12-16",
+        "date_n2": "2022-12-17",
+        "venue": "1STBANK Center",
+        "n1_songs": 14,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2022-12-30",
+        "date_n2": "2022-12-31",
+        "venue": "Andrew J Brady Music Center",
+        "n1_songs": 14,
+        "n2_songs": 16,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-03-08",
+        "date_n2": "2023-03-09",
+        "venue": "The Capitol Theatre",
+        "n1_songs": 14,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-03-09",
+        "date_n2": "2023-03-10",
+        "venue": "The Capitol Theatre",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-03-10",
+        "date_n2": "2023-03-11",
+        "venue": "The Capitol Theatre",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-03-11",
+        "date_n2": "2023-03-12",
+        "venue": "The Capitol Theatre",
+        "n1_songs": 13,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-03-24",
+        "date_n2": "2023-03-25",
+        "venue": "The Met",
+        "n1_songs": 11,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-03-30",
+        "date_n2": "2023-03-31",
+        "venue": "Ryman Auditorium",
+        "n1_songs": 11,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-03-31",
+        "date_n2": "2023-04-01",
+        "venue": "Ryman Auditorium",
+        "n1_songs": 13,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-04-14",
+        "date_n2": "2023-04-15",
+        "venue": "The Salt Shed",
+        "n1_songs": 14,
+        "n2_songs": 14,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0714
+      },
+      {
+        "date_n1": "2023-04-18",
+        "date_n2": "2023-04-19",
+        "venue": "The ELM",
+        "n1_songs": 12,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-04-22",
+        "date_n2": "2023-04-23",
+        "venue": "Paramount Theatre",
+        "n1_songs": 14,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-04-27",
+        "date_n2": "2023-04-28",
+        "venue": "The Warfield",
+        "n1_songs": 14,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-05-02",
+        "date_n2": "2023-05-03",
+        "venue": "Faubourg Brewery",
+        "n1_songs": 11,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-06-22",
+        "date_n2": "2023-06-23",
+        "venue": "Louisville Palace Theatre",
+        "n1_songs": 12,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-06-30",
+        "date_n2": "2023-07-01",
+        "venue": "Nelson Ledges Quarry Park",
+        "n1_songs": 12,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-07-03",
+        "date_n2": "2023-07-04",
+        "venue": "Stone Pony Summer Stage",
+        "n1_songs": 12,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-09-13",
+        "date_n2": "2023-09-14",
+        "venue": "Leader Bank Pavilion",
+        "n1_songs": 14,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-09-25",
+        "date_n2": "2023-09-26",
+        "venue": "Fox Theater",
+        "n1_songs": 11,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-10-05",
+        "date_n2": "2023-10-06",
+        "venue": "Red Rocks Park and Amphitheater",
+        "n1_songs": 15,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-11-19",
+        "date_n2": "2023-11-20",
+        "venue": "Electric Ballroom",
+        "n1_songs": 13,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2023-12-08",
+        "date_n2": "2023-12-09",
+        "venue": "Hampton Coliseum",
+        "n1_songs": 15,
+        "n2_songs": 16,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-04-07",
+        "date_n2": "2024-04-08",
+        "venue": "The Capitol Theatre",
+        "n1_songs": 14,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-04-08",
+        "date_n2": "2024-04-09",
+        "venue": "The Capitol Theatre",
+        "n1_songs": 14,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-04-09",
+        "date_n2": "2024-04-10",
+        "venue": "The Capitol Theatre",
+        "n1_songs": 12,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-06-04",
+        "date_n2": "2024-06-05",
+        "venue": "The Factory",
+        "n1_songs": 11,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-06-07",
+        "date_n2": "2024-06-08",
+        "venue": "Fiddler&#039;s Green Amphitheatre",
+        "n1_songs": 14,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-06-20",
+        "date_n2": "2024-06-21",
+        "venue": "Fox Theatre",
+        "n1_songs": 14,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-06-21",
+        "date_n2": "2024-06-22",
+        "venue": "Fox Theatre",
+        "n1_songs": 14,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-06-25",
+        "date_n2": "2024-06-26",
+        "venue": "Thompson&#039;s Point",
+        "n1_songs": 11,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-09-02",
+        "date_n2": "2024-09-03",
+        "venue": "MGM Music Hall at Fenway",
+        "n1_songs": 13,
+        "n2_songs": 17,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-09-03",
+        "date_n2": "2024-09-04",
+        "venue": "MGM Music Hall at Fenway",
+        "n1_songs": 17,
+        "n2_songs": 14,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0588
+      },
+      {
+        "date_n1": "2024-09-06",
+        "date_n2": "2024-09-07",
+        "venue": "Saratoga Performing Arts Center",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-09-11",
+        "date_n2": "2024-09-12",
+        "venue": "The Salt Shed",
+        "n1_songs": 13,
+        "n2_songs": 11,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-09-12",
+        "date_n2": "2024-09-13",
+        "venue": "The Salt Shed",
+        "n1_songs": 11,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-09-19",
+        "date_n2": "2024-09-20",
+        "venue": "Kettlehouse Amphitheater",
+        "n1_songs": 14,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-10-29",
+        "date_n2": "2024-10-30",
+        "venue": "The Fillmore Miami Beach",
+        "n1_songs": 13,
+        "n2_songs": 15,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-11-01",
+        "date_n2": "2024-11-02",
+        "venue": "The St. Augustine Amphitheatre",
+        "n1_songs": 15,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-11-08",
+        "date_n2": "2024-11-09",
+        "venue": "Andrew J Brady Music Center",
+        "n1_songs": 14,
+        "n2_songs": 15,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-11-09",
+        "date_n2": "2024-11-10",
+        "venue": "Andrew J Brady Music Center",
+        "n1_songs": 15,
+        "n2_songs": 16,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-11-12",
+        "date_n2": "2024-11-13",
+        "venue": "The Anthem",
+        "n1_songs": 16,
+        "n2_songs": 15,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2024-12-13",
+        "date_n2": "2024-12-14",
+        "venue": "North Charleston Coliseum &amp; Performing Arts Center",
+        "n1_songs": 20,
+        "n2_songs": 20,
+        "overlap": 1,
+        "overlap_rate_n1": 0.05
+      },
+      {
+        "date_n1": "2024-12-30",
+        "date_n2": "2024-12-31",
+        "venue": "Moody Center",
+        "n1_songs": 13,
+        "n2_songs": 15,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0769
+      },
+      {
+        "date_n1": "2025-02-06",
+        "date_n2": "2025-02-07",
+        "venue": "Miller High Life Theatre",
+        "n1_songs": 14,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-02-07",
+        "date_n2": "2025-02-08",
+        "venue": "Miller High Life Theatre",
+        "n1_songs": 14,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-02-10",
+        "date_n2": "2025-02-11",
+        "venue": "HISTORY",
+        "n1_songs": 15,
+        "n2_songs": 15,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-02-13",
+        "date_n2": "2025-02-14",
+        "venue": "GLC Live at 20 Monroe",
+        "n1_songs": 15,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-02-14",
+        "date_n2": "2025-02-15",
+        "venue": "GLC Live at 20 Monroe",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-05-08",
+        "date_n2": "2025-05-09",
+        "venue": "El Ganzo Oasis",
+        "n1_songs": 11,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-05-09",
+        "date_n2": "2025-05-10",
+        "venue": "El Ganzo Oasis",
+        "n1_songs": 13,
+        "n2_songs": 20,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-05-27",
+        "date_n2": "2025-05-28",
+        "venue": "The Masonic",
+        "n1_songs": 12,
+        "n2_songs": 14,
+        "overlap": 2,
+        "overlap_rate_n1": 0.1667
+      },
+      {
+        "date_n1": "2025-06-06",
+        "date_n2": "2025-06-07",
+        "venue": "Fiddler&#039;s Green Amphitheatre",
+        "n1_songs": 12,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-06-10",
+        "date_n2": "2025-06-11",
+        "venue": "The Factory",
+        "n1_songs": 13,
+        "n2_songs": 14,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-06-19",
+        "date_n2": "2025-06-20",
+        "venue": "Jacobs Pavilion at Nautica",
+        "n1_songs": 12,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-09-23",
+        "date_n2": "2025-09-24",
+        "venue": "Louisville Palace Theatre",
+        "n1_songs": 15,
+        "n2_songs": 12,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0667
+      },
+      {
+        "date_n1": "2025-10-02",
+        "date_n2": "2025-10-03",
+        "venue": "Allianz Amphitheater at Riverfront",
+        "n1_songs": 15,
+        "n2_songs": 15,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2025-12-12",
+        "date_n2": "2025-12-13",
+        "venue": "Amica Mutual Pavilion",
+        "n1_songs": 17,
+        "n2_songs": 16,
+        "overlap": 1,
+        "overlap_rate_n1": 0.0588
+      },
+      {
+        "date_n1": "2026-04-14",
+        "date_n2": "2026-04-15",
+        "venue": "War Memorial Auditorium",
+        "n1_songs": 15,
+        "n2_songs": 12,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2026-04-18",
+        "date_n2": "2026-04-19",
+        "venue": "The St. Augustine Amphitheatre",
+        "n1_songs": 13,
+        "n2_songs": 13,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2026-04-21",
+        "date_n2": "2026-04-22",
+        "venue": "Saenger Theatre",
+        "n1_songs": 12,
+        "n2_songs": 10,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      },
+      {
+        "date_n1": "2026-05-08",
+        "date_n2": "2026-05-09",
+        "venue": "El Ganzo Oasis",
+        "n1_songs": 9,
+        "n2_songs": 18,
+        "overlap": 0,
+        "overlap_rate_n1": 0.0
+      }
+    ]
+  },
+  "Q3_set2_opener_pool": {
+    "since": "2024-01-01",
+    "n_two_set_shows": 131,
+    "top15": [
+      {
+        "song": "Arrow",
+        "count": 9,
+        "share": 0.0687
+      },
+      {
+        "song": "Thatch",
+        "count": 8,
+        "share": 0.0611
+      },
+      {
+        "song": "Pancakes",
+        "count": 8,
+        "share": 0.0611
+      },
+      {
+        "song": "Hungersite",
+        "count": 8,
+        "share": 0.0611
+      },
+      {
+        "song": "Big Modern!",
+        "count": 8,
+        "share": 0.0611
+      },
+      {
+        "song": "Madhuvan",
+        "count": 7,
+        "share": 0.0534
+      },
+      {
+        "song": "Eminence Front",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Yeti",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Drive",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Creatures",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Into the Myst",
+        "count": 4,
+        "share": 0.0305
+      },
+      {
+        "song": "Wysteria Lane",
+        "count": 4,
+        "share": 0.0305
+      },
+      {
+        "song": "Fish In The Sea",
+        "count": 4,
+        "share": 0.0305
+      },
+      {
+        "song": "Animal",
+        "count": 4,
+        "share": 0.0305
+      },
+      {
+        "song": "Tumble",
+        "count": 4,
+        "share": 0.0305
+      }
+    ],
+    "total_set2_opens": 131,
+    "unique_songs_in_role": 42,
+    "top8_share": 0.4427,
+    "top12_share": 0.5802
+  },
+  "Q4_encore_pool": {
+    "since": "2024-01-01",
+    "n_encore_shows": 124,
+    "top15": [
+      {
+        "song": "The Empress Of Organos",
+        "count": 15,
+        "share": 0.0943
+      },
+      {
+        "song": "Arcadia",
+        "count": 10,
+        "share": 0.0629
+      },
+      {
+        "song": "SALT",
+        "count": 9,
+        "share": 0.0566
+      },
+      {
+        "song": "Hot Tea",
+        "count": 8,
+        "share": 0.0503
+      },
+      {
+        "song": "Turn On Your Love Light",
+        "count": 8,
+        "share": 0.0503
+      },
+      {
+        "song": "Don't Do It",
+        "count": 7,
+        "share": 0.044
+      },
+      {
+        "song": "Shama Lama Ding Dong",
+        "count": 7,
+        "share": 0.044
+      },
+      {
+        "song": "Slow Ready",
+        "count": 6,
+        "share": 0.0377
+      },
+      {
+        "song": "Give It Time",
+        "count": 6,
+        "share": 0.0377
+      },
+      {
+        "song": "Madhuvan",
+        "count": 5,
+        "share": 0.0314
+      },
+      {
+        "song": "Thatch",
+        "count": 5,
+        "share": 0.0314
+      },
+      {
+        "song": "(dawn)",
+        "count": 4,
+        "share": 0.0252
+      },
+      {
+        "song": "Tumble",
+        "count": 4,
+        "share": 0.0252
+      },
+      {
+        "song": "Same Old Shenanigans",
+        "count": 3,
+        "share": 0.0189
+      },
+      {
+        "song": "The Way It Is",
+        "count": 3,
+        "share": 0.0189
+      }
+    ],
+    "total_encore_appearances": 159,
+    "unique_songs_in_role": 59,
+    "top8_share": 0.4403,
+    "top12_share": 0.566
+  },
+  "Q5_show_opener_pool": {
+    "since": "2024-01-01",
+    "n_shows": 150,
+    "top15": [
+      {
+        "song": "Hot Love & The Lazy Poet",
+        "count": 10,
+        "share": 0.0667
+      },
+      {
+        "song": "Dr. Darkness",
+        "count": 8,
+        "share": 0.0533
+      },
+      {
+        "song": "Atlas Dogs",
+        "count": 8,
+        "share": 0.0533
+      },
+      {
+        "song": "Turbulence & The Night Rays",
+        "count": 6,
+        "share": 0.04
+      },
+      {
+        "song": "Drive",
+        "count": 6,
+        "share": 0.04
+      },
+      {
+        "song": "Flodown",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "Animal",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "The Whales",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "MEDIA",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "Elizabeth",
+        "count": 4,
+        "share": 0.0267
+      },
+      {
+        "song": "Pancakes",
+        "count": 4,
+        "share": 0.0267
+      },
+      {
+        "song": "Rockdale",
+        "count": 4,
+        "share": 0.0267
+      },
+      {
+        "song": "Yeti",
+        "count": 4,
+        "share": 0.0267
+      },
+      {
+        "song": "All I Need",
+        "count": 3,
+        "share": 0.02
+      },
+      {
+        "song": "Hot Tea",
+        "count": 3,
+        "share": 0.02
+      }
+    ],
+    "total_openers": 150,
+    "unique_songs_in_role": 62,
+    "top8_share": 0.3533,
+    "top12_share": 0.4667
+  },
+  "bonus_set_closers": {
+    "set1_closer_top15": [
+      {
+        "song": "Give It Time",
+        "count": 12,
+        "share": 0.08
+      },
+      {
+        "song": "Animal",
+        "count": 10,
+        "share": 0.0667
+      },
+      {
+        "song": "Rockdale",
+        "count": 9,
+        "share": 0.06
+      },
+      {
+        "song": "So Ready",
+        "count": 9,
+        "share": 0.06
+      },
+      {
+        "song": "SALT",
+        "count": 8,
+        "share": 0.0533
+      },
+      {
+        "song": "Tumble",
+        "count": 6,
+        "share": 0.04
+      },
+      {
+        "song": "Same Old Shenanigans",
+        "count": 6,
+        "share": 0.04
+      },
+      {
+        "song": "Jive Lee",
+        "count": 6,
+        "share": 0.04
+      },
+      {
+        "song": "Big Modern!",
+        "count": 6,
+        "share": 0.04
+      },
+      {
+        "song": "Arcadia",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "Butter Rum",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "Everything Must Go",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "Hungersite",
+        "count": 5,
+        "share": 0.0333
+      },
+      {
+        "song": "Flodown",
+        "count": 4,
+        "share": 0.0267
+      },
+      {
+        "song": "Hot Tea",
+        "count": 4,
+        "share": 0.0267
+      }
+    ],
+    "set2_closer_top15": [
+      {
+        "song": "Dripfield",
+        "count": 16,
+        "share": 0.1221
+      },
+      {
+        "song": "The Empress Of Organos",
+        "count": 12,
+        "share": 0.0916
+      },
+      {
+        "song": "Hot Tea",
+        "count": 8,
+        "share": 0.0611
+      },
+      {
+        "song": "Factory Fiction",
+        "count": 7,
+        "share": 0.0534
+      },
+      {
+        "song": "Madhuvan",
+        "count": 7,
+        "share": 0.0534
+      },
+      {
+        "song": "Arcadia",
+        "count": 7,
+        "share": 0.0534
+      },
+      {
+        "song": "Animal",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Slow Ready",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Sinnerman",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Thatch",
+        "count": 5,
+        "share": 0.0382
+      },
+      {
+        "song": "Hungersite",
+        "count": 4,
+        "share": 0.0305
+      },
+      {
+        "song": "Tumble",
+        "count": 3,
+        "share": 0.0229
+      },
+      {
+        "song": "So Ready",
+        "count": 3,
+        "share": 0.0229
+      },
+      {
+        "song": "Don\u2019t Leave Me This Way",
+        "count": 3,
+        "share": 0.0229
+      },
+      {
+        "song": "Jive Lee",
+        "count": 2,
+        "share": 0.0153
+      }
+    ]
+  },
+  "Q6_release_week_debuts": {
+    "everything_must_go": {
+      "release_date": "2025-04-04",
+      "window_shows": 5,
+      "per_show": [
+        {
+          "date": "2025-04-24",
+          "n_songs": 11,
+          "n_new_debuts": 1,
+          "new_songs": [
+            "Your Direction"
+          ]
+        },
+        {
+          "date": "2025-04-25",
+          "n_songs": 3,
+          "n_new_debuts": 0,
+          "new_songs": []
+        },
+        {
+          "date": "2025-05-08",
+          "n_songs": 11,
+          "n_new_debuts": 3,
+          "new_songs": [
+            "In Bloom",
+            "Torero",
+            "Ride Like The Wind"
+          ]
+        },
+        {
+          "date": "2025-05-09",
+          "n_songs": 13,
+          "n_new_debuts": 2,
+          "new_songs": [
+            "Iguana Song",
+            "fast:slow"
+          ]
+        },
+        {
+          "date": "2025-05-10",
+          "n_songs": 20,
+          "n_new_debuts": 2,
+          "new_songs": [
+            "Don\u2019t Think Twice, It\u2019s Alright",
+            "Dustin Hoffman"
+          ]
+        }
+      ],
+      "mean_new_per_show": 1.6,
+      "total_new_in_window": 8,
+      "unique_new_in_window": 8
+    },
+    "chain_yer_dragon": {
+      "release_date": "2025-08-08",
+      "window_shows": 5,
+      "per_show": [
+        {
+          "date": "2025-08-13",
+          "n_songs": 1,
+          "n_new_debuts": 1,
+          "new_songs": [
+            "Madalena"
+          ]
+        },
+        {
+          "date": "2025-08-15",
+          "n_songs": 8,
+          "n_new_debuts": 1,
+          "new_songs": [
+            "Royal"
+          ]
+        },
+        {
+          "date": "2025-08-16",
+          "n_songs": 11,
+          "n_new_debuts": 0,
+          "new_songs": []
+        },
+        {
+          "date": "2025-08-28",
+          "n_songs": 10,
+          "n_new_debuts": 0,
+          "new_songs": []
+        },
+        {
+          "date": "2025-08-31",
+          "n_songs": 8,
+          "n_new_debuts": 0,
+          "new_songs": []
+        }
+      ],
+      "mean_new_per_show": 0.4,
+      "total_new_in_window": 2,
+      "unique_new_in_window": 2
+    },
+    "baseline_debuts_per_show": {
+      "all_time_mean": 0.5873,
+      "last_50_mean": 0.36
+    }
+  },
+  "Q7_cover_rates": {
+    "all": {
+      "n_shows": 550,
+      "n_with_cover": 509,
+      "rate_any_cover": 0.9255,
+      "mean_covers_per_show": 2.6255
+    },
+    "last_50": {
+      "n_shows": 50,
+      "n_with_cover": 44,
+      "rate_any_cover": 0.88,
+      "mean_covers_per_show": 2.52
+    },
+    "last_20": {
+      "n_shows": 20,
+      "n_with_cover": 20,
+      "rate_any_cover": 1.0,
+      "mean_covers_per_show": 2.95
+    },
+    "marquee_tier": {
+      "n_shows": 27,
+      "n_with_cover": 24,
+      "rate_any_cover": 0.8889,
+      "mean_covers_per_show": 2.1852
+    },
+    "marquee_venues_matched": [
+      "Forest Hills Stadium",
+      "Hampton Coliseum",
+      "MGM Music Hall at Fenway",
+      "Madison Square Garden",
+      "Radio City Music Hall",
+      "Red Rocks Park and Amphitheater",
+      "Ryman Auditorium",
+      "The Anthem",
+      "The Capitol Theatre"
+    ]
+  },
+  "Q8_hot_tea_roles": {
+    "song": "Hot Tea",
+    "total_plays": 164,
+    "by_role": {
+      "show_opener": 11,
+      "set1_closer": 42,
+      "set2_opener": 7,
+      "set2_closer": 29,
+      "encore": 25,
+      "other_mid_set": 50
+    },
+    "pct_by_role": {
+      "show_opener": 0.0671,
+      "set1_closer": 0.2561,
+      "set2_opener": 0.0427,
+      "set2_closer": 0.1768,
+      "encore": 0.1524,
+      "other_mid_set": 0.3049
+    }
+  },
+  "Q10_big_modern_rates": {
+    "as_of_show_date": "2026-05-22",
+    "tracks": [
+      {
+        "track_target": "Big Modern!",
+        "canonical_name": "Big Modern!",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 33,
+        "plays_2026": 4,
+        "plays_last_50_shows": 13,
+        "last_played": "2026-05-22",
+        "shows_since_last": 0,
+        "days_since_last": 0
+      },
+      {
+        "track_target": "Big Modern",
+        "found_in_catalog": false,
+        "career_plays": 0
+      },
+      {
+        "track_target": "Good2B",
+        "canonical_name": "Good2B",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 4,
+        "plays_2026": 4,
+        "plays_last_50_shows": 4,
+        "last_played": "2026-05-09",
+        "shows_since_last": 1,
+        "days_since_last": 13
+      },
+      {
+        "track_target": "Good 2 B",
+        "found_in_catalog": false,
+        "career_plays": 0
+      },
+      {
+        "track_target": "MEDIA",
+        "canonical_name": "MEDIA",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 16,
+        "plays_2026": 3,
+        "plays_last_50_shows": 8,
+        "last_played": "2026-05-09",
+        "shows_since_last": 1,
+        "days_since_last": 13
+      },
+      {
+        "track_target": "Torero",
+        "canonical_name": "Torero",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 5,
+        "plays_2026": 1,
+        "plays_last_50_shows": 1,
+        "last_played": "2026-05-09",
+        "shows_since_last": 1,
+        "days_since_last": 13
+      },
+      {
+        "track_target": "SALT",
+        "canonical_name": "SALT",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 22,
+        "plays_2026": 2,
+        "plays_last_50_shows": 8,
+        "last_played": "2026-04-24",
+        "shows_since_last": 5,
+        "days_since_last": 28
+      },
+      {
+        "track_target": "Hot Tea",
+        "canonical_name": "Hot Tea",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 152,
+        "plays_2026": 3,
+        "plays_last_50_shows": 11,
+        "last_played": "2026-05-09",
+        "shows_since_last": 1,
+        "days_since_last": 13
+      },
+      {
+        "track_target": "fast:slow",
+        "canonical_name": "fast:slow",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 5,
+        "plays_2026": 0,
+        "plays_last_50_shows": 2,
+        "last_played": "2025-11-02",
+        "shows_since_last": 21,
+        "days_since_last": 201
+      },
+      {
+        "track_target": "fast/slow",
+        "found_in_catalog": false,
+        "career_plays": 0
+      },
+      {
+        "track_target": "Creatures",
+        "canonical_name": "Creatures",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 121,
+        "plays_2026": 4,
+        "plays_last_50_shows": 10,
+        "last_played": "2026-05-22",
+        "shows_since_last": 0,
+        "days_since_last": 0
+      },
+      {
+        "track_target": "This Old Sea",
+        "canonical_name": "This Old Sea",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 40,
+        "plays_2026": 2,
+        "plays_last_50_shows": 4,
+        "last_played": "2026-05-09",
+        "shows_since_last": 1,
+        "days_since_last": 13
+      },
+      {
+        "track_target": "Silver Rising",
+        "canonical_name": "Silver Rising",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 75,
+        "plays_2026": 3,
+        "plays_last_50_shows": 12,
+        "last_played": "2026-05-07",
+        "shows_since_last": 3,
+        "days_since_last": 15
+      },
+      {
+        "track_target": "Rosewood Heart",
+        "canonical_name": "Rosewood Heart",
+        "found_in_catalog": true,
+        "career_plays_distinct_shows": 58,
+        "plays_2026": 1,
+        "plays_last_50_shows": 3,
+        "last_played": "2026-04-21",
+        "shows_since_last": 8,
+        "days_since_last": 31
+      }
+    ]
+  },
+  "meta": {
+    "n_shows": 550,
+    "first_show": "2018-01-13",
+    "last_show": "2026-05-22",
+    "n_rows": 6554,
+    "n_distinct_songs": 323
+  }
+}

@@ -181,6 +181,52 @@ footer a{color:#ff8ac4}
   background:linear-gradient(180deg, transparent 30%, rgba(7,7,31,.7));
   mix-blend-mode:multiply}
 
+/* ───────────────────── MOBILE-FIRST RESPONSIVE OVERRIDES ───────────────────── */
+@media (max-width: 640px){
+  .wrap{padding:14px 12px 60px}
+  header.hero{padding:30px 4px 18px}
+  .goose-art{width:110px; height:110px}
+  .halo{width:230px; height:230px}
+  .halo.two{width:160px; height:160px}
+  .kicker{letter-spacing:.35em; font-size:.66rem; margin:12px 0 2px}
+  h1{font-size:clamp(1.9rem, 11vw, 3rem) !important; line-height:1.05}
+  .venue{font-size:1rem}
+  .dates{font-size:.85rem}
+  .format{font-size:.74rem; padding:6px 12px}
+  nav{gap:6px; margin:8px -4px 20px; overflow-x:auto; flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch; padding:4px}
+  nav a{font-size:.78rem; padding:7px 12px; white-space:nowrap; flex:0 0 auto}
+  .assume{padding:18px 16px; border-radius:14px}
+  .assume h3{font-size:1rem; flex-wrap:wrap; gap:6px}
+  .assume h3 > span:last-child{margin-left:0 !important; width:100%; font-size:.7rem !important}
+  .assume ol{font-size:.86rem; padding-left:18px}
+  .assume li{margin:6px 0}
+  .assume .cov{font-size:.78rem}
+  .seclabel{font-size:1.05rem; margin:24px 2px 10px}
+  .song{padding:11px 12px; gap:10px; border-radius:14px}
+  .rank{flex:0 0 32px; height:32px; font-size:.88rem}
+  .name{font-size:.95rem}
+  .pct{font-size:.95rem}
+  .why{font-size:.76rem; line-height:1.45}
+  .track{height:9px}
+  .note{padding:12px 14px; font-size:.84rem; border-radius:12px}
+  .cards{grid-template-columns:1fr; gap:14px}
+  .card{padding:24px 18px; min-height:auto}
+  .card .cgoose{font-size:46px}
+  .card h2{font-size:1.3rem}
+  .statgrid{grid-template-columns:repeat(2, 1fr); gap:8px}
+  .statgrid .stat{padding:11px 12px}
+  .statgrid .stat .num{font-size:1.15rem}
+  .statgrid .stat .lbl{font-size:.7rem}
+  .twocol{grid-template-columns:1fr; gap:20px}
+  .imgstrip{grid-template-columns:1fr 1fr; gap:8px}
+  .imgstrip > div:nth-child(3){display:none}
+}
+
+/* Always allow long names to wrap so they don't blow out the layout */
+.song .meta{flex-wrap:wrap}
+.song .name{word-break:break-word; overflow-wrap:anywhere}
+
   </style>
 </head>
 <body>

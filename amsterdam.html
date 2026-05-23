@@ -181,6 +181,52 @@ footer a{color:#ff8ac4}
   background:linear-gradient(180deg, transparent 30%, rgba(7,7,31,.7));
   mix-blend-mode:multiply}
 
+/* ───────────────────── MOBILE-FIRST RESPONSIVE OVERRIDES ───────────────────── */
+@media (max-width: 640px){
+  .wrap{padding:14px 12px 60px}
+  header.hero{padding:30px 4px 18px}
+  .goose-art{width:110px; height:110px}
+  .halo{width:230px; height:230px}
+  .halo.two{width:160px; height:160px}
+  .kicker{letter-spacing:.35em; font-size:.66rem; margin:12px 0 2px}
+  h1{font-size:clamp(1.9rem, 11vw, 3rem) !important; line-height:1.05}
+  .venue{font-size:1rem}
+  .dates{font-size:.85rem}
+  .format{font-size:.74rem; padding:6px 12px}
+  nav{gap:6px; margin:8px -4px 20px; overflow-x:auto; flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch; padding:4px}
+  nav a{font-size:.78rem; padding:7px 12px; white-space:nowrap; flex:0 0 auto}
+  .assume{padding:18px 16px; border-radius:14px}
+  .assume h3{font-size:1rem; flex-wrap:wrap; gap:6px}
+  .assume h3 > span:last-child{margin-left:0 !important; width:100%; font-size:.7rem !important}
+  .assume ol{font-size:.86rem; padding-left:18px}
+  .assume li{margin:6px 0}
+  .assume .cov{font-size:.78rem}
+  .seclabel{font-size:1.05rem; margin:24px 2px 10px}
+  .song{padding:11px 12px; gap:10px; border-radius:14px}
+  .rank{flex:0 0 32px; height:32px; font-size:.88rem}
+  .name{font-size:.95rem}
+  .pct{font-size:.95rem}
+  .why{font-size:.76rem; line-height:1.45}
+  .track{height:9px}
+  .note{padding:12px 14px; font-size:.84rem; border-radius:12px}
+  .cards{grid-template-columns:1fr; gap:14px}
+  .card{padding:24px 18px; min-height:auto}
+  .card .cgoose{font-size:46px}
+  .card h2{font-size:1.3rem}
+  .statgrid{grid-template-columns:repeat(2, 1fr); gap:8px}
+  .statgrid .stat{padding:11px 12px}
+  .statgrid .stat .num{font-size:1.15rem}
+  .statgrid .stat .lbl{font-size:.7rem}
+  .twocol{grid-template-columns:1fr; gap:20px}
+  .imgstrip{grid-template-columns:1fr 1fr; gap:8px}
+  .imgstrip > div:nth-child(3){display:none}
+}
+
+/* Always allow long names to wrap so they don't blow out the layout */
+.song .meta{flex-wrap:wrap}
+.song .name{word-break:break-word; overflow-wrap:anywhere}
+
   </style>
 </head>
 <body>
@@ -233,8 +279,8 @@ footer a{color:#ff8ac4}
       <ol>
         <li><b>We pulled every Goose setlist back to 2018</b> — 550 shows, 323 unique songs — from <a href="https://elgoose.net/" style="color:#7ef9ff">El Goose</a> (the band's setlist archive). The 18 shows from 2026 carry more weight than older data because the rotation has changed since <em>Everything Must Go</em> and <em>Chain Yer Dragon</em>.</li>
         <li><b>Each song's starting point is "how often does it show up?"</b> — counted across the 2026 tour and the last 50 shows combined. Heaviest rotators (Give It Time, Animal, Hungersite) hit ~30% of recent shows. That's the per-song baseline.</li>
-        <li><b>We give bonus points to songs played in London 5/22</b> (the freshest leg signal — those 11 songs are <em>definitely</em> in the current European songbook). European first-time markets like Amsterdam tend to get the band's most-loved jams rather than deep cuts or bustouts.</li>
-        <li><b>New songs over-index.</b> 2026 debuts (Good2B, Cortez The Killer, Hey Joe) get a bump above their long-run rate while they're still "new", with the bump fading every show.</li>
+        <li><b>The "Tour Variety Engine" cuts in hard.</b> Goose rotates — the empirical cross-venue 5-day overlap rate is just 9.6% (n=61). So songs played at <b>London 5/22</b> (Animal, Your Direction, So Ready, Big Modern!, Creatures, Turn On Your Love Light, etc.) get a steep down-weight for Amsterdam. They <em>just</em> played them.</li>
+        <li><b>New rotation songs get a bump</b> — Good2B is the main one for 2026. <em>Cortez The Killer</em> and <em>Hey Joe</em> were one-offs at Viva El Gonzo with Jim James and Cory Wong sitting in — they're NOT in standalone rotation, so we explicitly suppress them.</li>
         <li><b>The percentages sum to the show's length.</b> A single set show is ~11 slots total — and the probabilities you see all together describe how that 11-song pie gets sliced. No song can clear 40% because Goose's catalog is too deep for any one song to be a true "lock".</li>
       </ol>
       <div class="cov"><strong>One thing to remember:</strong> the deep catalog matters. Even the #1 pick sits well under 50% because ~60% of every Goose show's slots come from outside the top two dozen rotators. <b>Treat these as relative odds — ranking matters more than the exact %.</b> For the full math, see the <a href="methodology.html" style="color:#aaff00">Methodology page</a>.</div>
@@ -313,178 +359,178 @@ footer a{color:#ff8ac4}
         <div class="seclabel">🌙 Night 1 — May 27</div>
 
         <ol class="list">
-    <li class="song hot" style="--p:29.5;--i:0">
+    <li class="song hot" style="--p:30.7;--i:0">
       <span class="rank">1</span>
       <div class="body">
-        <div class="meta"><span class="name">Hungersite</span><span class="pct">29.5%</span></div>
+        <div class="meta"><span class="name">Hungersite</span><span class="pct">30.7%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">27% recent rotation · set-2 launch pad</p>
       </div>
     </li>
-    <li class="song hot" style="--p:26.5;--i:1">
+    <li class="song hot" style="--p:27.6;--i:1">
       <span class="rank">2</span>
       <div class="body">
-        <div class="meta"><span class="name">Thatch</span><span class="pct">26.5%</span></div>
+        <div class="meta"><span class="name">Thatch</span><span class="pct">27.6%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">24% recent rotation</p>
+        <p class="why">24% recent rotation · set-2 launch pad</p>
       </div>
     </li>
-    <li class="song warm" style="--p:23.0;--i:2">
+    <li class="song warm" style="--p:23.9;--i:2">
       <span class="rank">3</span>
       <div class="body">
-        <div class="meta"><span class="name">Give It Time</span><span class="pct">23.0%</span></div>
+        <div class="meta"><span class="name">Give It Time</span><span class="pct">23.9%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">30% recent rotation</p>
       </div>
     </li>
-    <li class="song warm" style="--p:22.5;--i:3">
+    <li class="song warm" style="--p:23.8;--i:3">
       <span class="rank">4</span>
       <div class="body">
-        <div class="meta"><span class="name">Madalena</span><span class="pct">22.5%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">20% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:20.3;--i:4">
-      <span class="rank">5</span>
-      <div class="body">
-        <div class="meta"><span class="name">Echo of a Rose</span><span class="pct">20.3%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">20% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:20.1;--i:5">
-      <span class="rank">6</span>
-      <div class="body">
-        <div class="meta"><span class="name">Royal</span><span class="pct">20.1%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">18% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:20.1;--i:6">
-      <span class="rank">7</span>
-      <div class="body">
-        <div class="meta"><span class="name">Flodown</span><span class="pct">20.1%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">18% recent rotation · show opener</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:19.9;--i:7">
-      <span class="rank">8</span>
-      <div class="body">
-        <div class="meta"><span class="name">Silver Rising</span><span class="pct">19.9%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">20% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:19.2;--i:8">
-      <span class="rank">9</span>
-      <div class="body">
-        <div class="meta"><span class="name">Dripfield</span><span class="pct">19.2%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">17% recent rotation · set closer</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:19.2;--i:9">
-      <span class="rank">10</span>
-      <div class="body">
-        <div class="meta"><span class="name">The Empress Of Organos</span><span class="pct">19.2%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">17% recent rotation · set closer</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:19.2;--i:10">
-      <span class="rank">11</span>
-      <div class="body">
-        <div class="meta"><span class="name">Hot Love &amp; The Lazy Poet</span><span class="pct">19.2%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">17% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:18.8;--i:11">
-      <span class="rank">12</span>
-      <div class="body">
-        <div class="meta"><span class="name">Arcadia</span><span class="pct">18.8%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">21% recent rotation · encore staple</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:18.8;--i:12">
-      <span class="rank">13</span>
-      <div class="body">
-        <div class="meta"><span class="name">Jed Stone</span><span class="pct">18.8%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">21% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:18.2;--i:13">
-      <span class="rank">14</span>
-      <div class="body">
-        <div class="meta"><span class="name">Arrow</span><span class="pct">18.2%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">16% recent rotation · set-2 launch pad</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:17.9;--i:14">
-      <span class="rank">15</span>
-      <div class="body">
-        <div class="meta"><span class="name">Rockdale</span><span class="pct">17.9%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">23% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:17.2;--i:15">
-      <span class="rank">16</span>
-      <div class="body">
-        <div class="meta"><span class="name">Borne</span><span class="pct">17.2%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">19% recent rotation</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:17.2;--i:16">
-      <span class="rank">17</span>
-      <div class="body">
-        <div class="meta"><span class="name">Pancakes</span><span class="pct">17.2%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">15% recent rotation · set-2 launch pad</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:15.8;--i:17">
-      <span class="rank">18</span>
-      <div class="body">
-        <div class="meta"><span class="name">Good2B</span><span class="pct">15.8%</span></div>
+        <div class="meta"><span class="name">Good2B</span><span class="pct">23.8%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">16% recent rotation · 2026 debut</p>
       </div>
     </li>
-    <li class="song warm" style="--p:15.8;--i:18">
+    <li class="song warm" style="--p:23.4;--i:4">
+      <span class="rank">5</span>
+      <div class="body">
+        <div class="meta"><span class="name">Madalena</span><span class="pct">23.4%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">20% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:21.1;--i:5">
+      <span class="rank">6</span>
+      <div class="body">
+        <div class="meta"><span class="name">Echo of a Rose</span><span class="pct">21.1%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">20% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:20.9;--i:6">
+      <span class="rank">7</span>
+      <div class="body">
+        <div class="meta"><span class="name">Royal</span><span class="pct">20.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">18% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:20.9;--i:7">
+      <span class="rank">8</span>
+      <div class="body">
+        <div class="meta"><span class="name">Flodown</span><span class="pct">20.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">18% recent rotation · show opener</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:20.7;--i:8">
+      <span class="rank">9</span>
+      <div class="body">
+        <div class="meta"><span class="name">Silver Rising</span><span class="pct">20.7%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">20% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:19.9;--i:9">
+      <span class="rank">10</span>
+      <div class="body">
+        <div class="meta"><span class="name">Dripfield</span><span class="pct">19.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">17% recent rotation · set closer</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:19.9;--i:10">
+      <span class="rank">11</span>
+      <div class="body">
+        <div class="meta"><span class="name">Hot Love &amp; The Lazy Poet</span><span class="pct">19.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">17% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:19.9;--i:11">
+      <span class="rank">12</span>
+      <div class="body">
+        <div class="meta"><span class="name">The Empress Of Organos</span><span class="pct">19.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">17% recent rotation · set-2 launch pad</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:19.6;--i:12">
+      <span class="rank">13</span>
+      <div class="body">
+        <div class="meta"><span class="name">Jed Stone</span><span class="pct">19.6%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">21% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:19.6;--i:13">
+      <span class="rank">14</span>
+      <div class="body">
+        <div class="meta"><span class="name">Arcadia</span><span class="pct">19.6%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">21% recent rotation · set closer</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:18.9;--i:14">
+      <span class="rank">15</span>
+      <div class="body">
+        <div class="meta"><span class="name">Arrow</span><span class="pct">18.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">16% recent rotation · set-2 launch pad</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:18.6;--i:15">
+      <span class="rank">16</span>
+      <div class="body">
+        <div class="meta"><span class="name">Rockdale</span><span class="pct">18.6%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">23% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:17.9;--i:16">
+      <span class="rank">17</span>
+      <div class="body">
+        <div class="meta"><span class="name">Borne</span><span class="pct">17.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">19% recent rotation</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:17.8;--i:17">
+      <span class="rank">18</span>
+      <div class="body">
+        <div class="meta"><span class="name">Pancakes</span><span class="pct">17.8%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">15% recent rotation · set-2 launch pad</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:16.4;--i:18">
       <span class="rank">19</span>
       <div class="body">
-        <div class="meta"><span class="name">Madhuvan</span><span class="pct">15.8%</span></div>
+        <div class="meta"><span class="name">Madhuvan</span><span class="pct">16.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">20% recent rotation · set-2 launch pad</p>
       </div>
     </li>
-    <li class="song warm" style="--p:15.8;--i:19">
+    <li class="song warm" style="--p:16.4;--i:19">
       <span class="rank">20</span>
       <div class="body">
-        <div class="meta"><span class="name">Slow Ready</span><span class="pct">15.8%</span></div>
+        <div class="meta"><span class="name">Slow Ready</span><span class="pct">16.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">14% recent rotation · encore staple</p>
       </div>
     </li>
-    <li class="song warm" style="--p:15.4;--i:20">
+    <li class="song warm" style="--p:16.0;--i:20">
       <span class="rank">21</span>
       <div class="body">
-        <div class="meta"><span class="name">Draconian Meter Maid</span><span class="pct">15.4%</span></div>
+        <div class="meta"><span class="name">Draconian Meter Maid</span><span class="pct">16.0%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation</p>
       </div>
     </li>
-    <li class="song cool" style="--p:14.8;--i:21">
+    <li class="song warm" style="--p:15.4;--i:21">
       <span class="rank">22</span>
       <div class="body">
-        <div class="meta"><span class="name">Hot Tea</span><span class="pct">14.8%</span></div>
+        <div class="meta"><span class="name">Hot Tea</span><span class="pct">15.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">19% recent rotation · set closer</p>
       </div>
@@ -523,180 +569,180 @@ footer a{color:#ff8ac4}
         <div class="seclabel">🌙 Night 2 — May 28</div>
 <div class="note" style="margin-top:8px"><b>Conditioned on N1.</b> Songs that almost certainly played 5/27 are down-weighted by ρ = -0.95.</div>
         <ol class="list">
-    <li class="song warm" style="--p:23.4;--i:0">
+    <li class="song hot" style="--p:26.1;--i:0">
       <span class="rank">1</span>
       <div class="body">
-        <div class="meta"><span class="name">Arrow</span><span class="pct">23.4%</span></div>
+        <div class="meta"><span class="name">Arcadia</span><span class="pct">26.1%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">21% recent rotation · set closer · eligible after N1</p>
+      </div>
+    </li>
+    <li class="song hot" style="--p:25.1;--i:1">
+      <span class="rank">2</span>
+      <div class="body">
+        <div class="meta"><span class="name">Arrow</span><span class="pct">25.1%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">16% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:23.0;--i:1">
-      <span class="rank">2</span>
+    <li class="song warm" style="--p:24.7;--i:2">
+      <span class="rank">3</span>
       <div class="body">
-        <div class="meta"><span class="name">Rockdale</span><span class="pct">23.0%</span></div>
+        <div class="meta"><span class="name">Rockdale</span><span class="pct">24.7%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">23% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:22.2;--i:2">
-      <span class="rank">3</span>
+    <li class="song warm" style="--p:23.8;--i:3">
+      <span class="rank">4</span>
       <div class="body">
-        <div class="meta"><span class="name">Borne</span><span class="pct">22.2%</span></div>
+        <div class="meta"><span class="name">Borne</span><span class="pct">23.8%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">19% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:22.1;--i:3">
-      <span class="rank">4</span>
+    <li class="song warm" style="--p:23.7;--i:4">
+      <span class="rank">5</span>
       <div class="body">
-        <div class="meta"><span class="name">Pancakes</span><span class="pct">22.1%</span></div>
+        <div class="meta"><span class="name">Pancakes</span><span class="pct">23.7%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.4;--i:4">
-      <span class="rank">5</span>
-      <div class="body">
-        <div class="meta"><span class="name">Good2B</span><span class="pct">20.4%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">16% recent rotation · 2026 debut · eligible after N1</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:20.3;--i:5">
+    <li class="song warm" style="--p:21.8;--i:5">
       <span class="rank">6</span>
       <div class="body">
-        <div class="meta"><span class="name">Madhuvan</span><span class="pct">20.3%</span></div>
+        <div class="meta"><span class="name">Madhuvan</span><span class="pct">21.8%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">20% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.3;--i:6">
+    <li class="song warm" style="--p:21.8;--i:6">
       <span class="rank">7</span>
       <div class="body">
-        <div class="meta"><span class="name">Slow Ready</span><span class="pct">20.3%</span></div>
+        <div class="meta"><span class="name">Slow Ready</span><span class="pct">21.8%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">14% recent rotation · encore staple · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:19.9;--i:7">
+    <li class="song warm" style="--p:21.4;--i:7">
       <span class="rank">8</span>
       <div class="body">
-        <div class="meta"><span class="name">Draconian Meter Maid</span><span class="pct">19.9%</span></div>
+        <div class="meta"><span class="name">Draconian Meter Maid</span><span class="pct">21.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:19.1;--i:8">
+    <li class="song warm" style="--p:20.5;--i:8">
       <span class="rank">9</span>
       <div class="body">
-        <div class="meta"><span class="name">Hot Tea</span><span class="pct">19.1%</span></div>
+        <div class="meta"><span class="name">Hot Tea</span><span class="pct">20.5%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">19% recent rotation · set closer · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:19.0;--i:9">
+    <li class="song warm" style="--p:20.4;--i:9">
       <span class="rank">10</span>
       <div class="body">
-        <div class="meta"><span class="name">Tumble</span><span class="pct">19.0%</span></div>
+        <div class="meta"><span class="name">Tumble</span><span class="pct">20.4%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">13% recent rotation · eligible after N1</p>
+        <p class="why">13% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:19.0;--i:10">
+    <li class="song warm" style="--p:20.4;--i:10">
       <span class="rank">11</span>
       <div class="body">
-        <div class="meta"><span class="name">SALT</span><span class="pct">19.0%</span></div>
+        <div class="meta"><span class="name">SALT</span><span class="pct">20.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">13% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:18.7;--i:11">
+    <li class="song warm" style="--p:20.1;--i:11">
       <span class="rank">12</span>
       <div class="body">
-        <div class="meta"><span class="name">Same Old Shenanigans</span><span class="pct">18.7%</span></div>
+        <div class="meta"><span class="name">Same Old Shenanigans</span><span class="pct">20.1%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:18.7;--i:12">
+    <li class="song warm" style="--p:20.1;--i:12">
       <span class="rank">13</span>
       <div class="body">
-        <div class="meta"><span class="name">Wysteria Lane</span><span class="pct">18.7%</span></div>
+        <div class="meta"><span class="name">Wysteria Lane</span><span class="pct">20.1%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:17.7;--i:13">
+    <li class="song warm" style="--p:19.0;--i:13">
       <span class="rank">14</span>
       <div class="body">
-        <div class="meta"><span class="name">Everything Must Go</span><span class="pct">17.7%</span></div>
+        <div class="meta"><span class="name">Everything Must Go</span><span class="pct">19.0%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:17.7;--i:14">
+    <li class="song warm" style="--p:19.0;--i:14">
       <span class="rank">15</span>
       <div class="body">
-        <div class="meta"><span class="name">Red Bird</span><span class="pct">17.7%</span></div>
+        <div class="meta"><span class="name">Red Bird</span><span class="pct">19.0%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:17.7;--i:15">
+    <li class="song warm" style="--p:19.0;--i:15">
       <span class="rank">16</span>
       <div class="body">
-        <div class="meta"><span class="name">Yeti</span><span class="pct">17.7%</span></div>
+        <div class="meta"><span class="name">Yeti</span><span class="pct">19.0%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · show opener · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:16.4;--i:16">
+    <li class="song warm" style="--p:17.7;--i:16">
       <span class="rank">17</span>
       <div class="body">
-        <div class="meta"><span class="name">Into the Myst</span><span class="pct">16.4%</span></div>
+        <div class="meta"><span class="name">Feel It Now</span><span class="pct">17.7%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">12% recent rotation · eligible after N1</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:17.7;--i:17">
+      <span class="rank">18</span>
+      <div class="body">
+        <div class="meta"><span class="name">Into the Myst</span><span class="pct">17.7%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:16.4;--i:17">
-      <span class="rank">18</span>
-      <div class="body">
-        <div class="meta"><span class="name">Feel It Now</span><span class="pct">16.4%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">12% recent rotation · eligible after N1</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:16.4;--i:18">
+    <li class="song warm" style="--p:17.7;--i:18">
       <span class="rank">19</span>
       <div class="body">
-        <div class="meta"><span class="name">Shama Lama Ding Dong</span><span class="pct">16.4%</span></div>
+        <div class="meta"><span class="name">Shama Lama Ding Dong</span><span class="pct">17.7%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">12% recent rotation · eligible after N1</p>
+        <p class="why">12% recent rotation · encore staple · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:16.4;--i:19">
+    <li class="song warm" style="--p:17.6;--i:19">
       <span class="rank">20</span>
       <div class="body">
-        <div class="meta"><span class="name">Drive</span><span class="pct">16.4%</span></div>
+        <div class="meta"><span class="name">MEDIA</span><span class="pct">17.6%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">16% recent rotation · eligible after N1</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:17.6;--i:20">
+      <span class="rank">21</span>
+      <div class="body">
+        <div class="meta"><span class="name">Drive</span><span class="pct">17.6%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">16% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:16.4;--i:20">
-      <span class="rank">21</span>
-      <div class="body">
-        <div class="meta"><span class="name">Atlas Dogs</span><span class="pct">16.4%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">16% recent rotation · show opener · eligible after N1</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:16.4;--i:21">
+    <li class="song warm" style="--p:17.6;--i:21">
       <span class="rank">22</span>
       <div class="body">
-        <div class="meta"><span class="name">MEDIA</span><span class="pct">16.4%</span></div>
+        <div class="meta"><span class="name">Atlas Dogs</span><span class="pct">17.6%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">16% recent rotation · eligible after N1</p>
+        <p class="why">16% recent rotation · show opener · eligible after N1</p>
       </div>
     </li>
         </ol>

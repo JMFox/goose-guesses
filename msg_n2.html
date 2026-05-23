@@ -181,6 +181,52 @@ footer a{color:#ff8ac4}
   background:linear-gradient(180deg, transparent 30%, rgba(7,7,31,.7));
   mix-blend-mode:multiply}
 
+/* ───────────────────── MOBILE-FIRST RESPONSIVE OVERRIDES ───────────────────── */
+@media (max-width: 640px){
+  .wrap{padding:14px 12px 60px}
+  header.hero{padding:30px 4px 18px}
+  .goose-art{width:110px; height:110px}
+  .halo{width:230px; height:230px}
+  .halo.two{width:160px; height:160px}
+  .kicker{letter-spacing:.35em; font-size:.66rem; margin:12px 0 2px}
+  h1{font-size:clamp(1.9rem, 11vw, 3rem) !important; line-height:1.05}
+  .venue{font-size:1rem}
+  .dates{font-size:.85rem}
+  .format{font-size:.74rem; padding:6px 12px}
+  nav{gap:6px; margin:8px -4px 20px; overflow-x:auto; flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch; padding:4px}
+  nav a{font-size:.78rem; padding:7px 12px; white-space:nowrap; flex:0 0 auto}
+  .assume{padding:18px 16px; border-radius:14px}
+  .assume h3{font-size:1rem; flex-wrap:wrap; gap:6px}
+  .assume h3 > span:last-child{margin-left:0 !important; width:100%; font-size:.7rem !important}
+  .assume ol{font-size:.86rem; padding-left:18px}
+  .assume li{margin:6px 0}
+  .assume .cov{font-size:.78rem}
+  .seclabel{font-size:1.05rem; margin:24px 2px 10px}
+  .song{padding:11px 12px; gap:10px; border-radius:14px}
+  .rank{flex:0 0 32px; height:32px; font-size:.88rem}
+  .name{font-size:.95rem}
+  .pct{font-size:.95rem}
+  .why{font-size:.76rem; line-height:1.45}
+  .track{height:9px}
+  .note{padding:12px 14px; font-size:.84rem; border-radius:12px}
+  .cards{grid-template-columns:1fr; gap:14px}
+  .card{padding:24px 18px; min-height:auto}
+  .card .cgoose{font-size:46px}
+  .card h2{font-size:1.3rem}
+  .statgrid{grid-template-columns:repeat(2, 1fr); gap:8px}
+  .statgrid .stat{padding:11px 12px}
+  .statgrid .stat .num{font-size:1.15rem}
+  .statgrid .stat .lbl{font-size:.7rem}
+  .twocol{grid-template-columns:1fr; gap:20px}
+  .imgstrip{grid-template-columns:1fr 1fr; gap:8px}
+  .imgstrip > div:nth-child(3){display:none}
+}
+
+/* Always allow long names to wrap so they don't blow out the layout */
+.song .meta{flex-wrap:wrap}
+.song .name{word-break:break-word; overflow-wrap:anywhere}
+
   </style>
 </head>
 <body>
@@ -237,9 +283,9 @@ footer a{color:#ff8ac4}
       <ol>
         <li><b>We pulled every Goose setlist back to 2018</b> — 550 shows, 323 unique songs — from <a href="https://elgoose.net/" style="color:#7ef9ff">El Goose</a> (the band's setlist archive). The 18 shows from 2026 carry more weight than older data because the rotation has changed since <em>Everything Must Go</em> and <em>Chain Yer Dragon</em>.</li>
         <li><b>Each song's starting point is "how often does it show up?"</b> — counted across the 2026 tour and the last 50 shows combined. Heaviest rotators (Give It Time, Animal, Hungersite) hit ~30% of recent shows. That's the per-song baseline.</li>
-        <li><b>MSG is the big stage.</b> We bumped up odds for "set-2 launch pad" jams (Hungersite, Thatch, Madhuvan), encore staples (Arcadia, Give It Time), and added a real possibility of a cover and a bustout from the deep catalog. Stuart Bogie's horns showed up at MSG 2025 — bet on them returning.</li>
+        <li><b>MSG is the big stage.</b> We bumped up odds for "set-2 launch pad" jams (Hungersite, Thatch, Madhuvan), encore staples (Arcadia, Empress of Organos), and reserved real probability for a cover, a deep-catalog bustout, and Stuart Bogie's horns (they showed up at MSG 2025 — bet on a return).</li>
         <li><b>Goose almost never repeats songs across back-to-back nights.</b> We measured this from 105 historical 2-night pairs since 2018 — only <b>0.89%</b> of N1 songs come back on N2. So Night 2 picks fade hard for anything we expect on Night 1.</li>
-        <li><b>BIG MODERN! drops June 12 — seven days before MSG N1.</b> Songs already debuted from the album (Good2B, MEDIA, Torero, SALT) get a release-week boost, and there's a real shot at a live debut of one of the unplayed album tracks (Scavenger, POP, Good Times // End Times).</li>
+        <li><b>BIG MODERN! drops June 12 — seven days before MSG N1.</b> Songs already debuted from the album (Good2B, MEDIA, Torero, SALT) get a release-week boost (calibrated against <em>Everything Must Go</em>'s 4.4× lift). Real shot at a live debut of one of the unplayed album tracks too (Scavenger, POP, Good Times // End Times, fast:slow).</li>
         <li><b>The percentages sum to the show's length.</b> A two sets + encore show is ~18 slots total — and the probabilities you see all together describe how that 18-song pie gets sliced. No song can clear 50% because Goose's catalog is too deep for any one song to be a true "lock".</li>
       </ol>
       <div class="cov"><strong>One thing to remember:</strong> the deep catalog matters. Even the #1 pick sits well under 50% because ~60% of every Goose show's slots come from outside the top two dozen rotators. <b>Treat these as relative odds — ranking matters more than the exact %.</b> For the full math, see the <a href="methodology.html" style="color:#aaff00">Methodology page</a>.</div>
@@ -313,245 +359,245 @@ footer a{color:#ff8ac4}
         </div></div>
     <div class="note"><b>Format:</b> Two sets + encore · ~18 songs/night. <b>Venue tier:</b> marquee (V=1.4). These probabilities are <em>per-night</em> marginal estimates from the model.</div>
 
-      <div class="note"><b>Bayesian conditioning.</b> Empirical 2-night same-venue repeat rate is <b>0.89%</b> (n=105 pairs since 2018). Songs predicted for Night 1 are down-weighted by ρ = -0.95 — their probability becomes ~5% of base. Excluded N1 candidates:<br><span style="color:var(--muted);font-size:.85rem">Arcadia, Arrow, Borne, Dripfield, Echo of a Rose, Flodown, Give It Time, Hot Love &amp; The Lazy Poet<br>Hot Tea, Hungersite, Jed Stone, Madalena, Madhuvan, Pancakes, Rockdale, Royal<br>Silver Rising, Slow Ready, Thatch, The Empress Of Organos</span></div>
+      <div class="note"><b>Bayesian conditioning.</b> Empirical 2-night same-venue repeat rate is <b>0.89%</b> (n=105 pairs since 2018). Songs predicted for Night 1 are down-weighted by ρ = -0.95 — their probability becomes ~5% of base. Excluded N1 candidates:<br><span style="color:var(--muted);font-size:.85rem">Arcadia, Arrow, Borne, Dripfield, Echo of a Rose, Flodown, Give It Time, Good2B<br>Hot Love &amp; The Lazy Poet, Hungersite, Jed Stone, Madalena, Madhuvan, Pancakes, Rockdale, Royal<br>Silver Rising, Slow Ready, Thatch, The Empress Of Organos</span></div>
     <div class="seclabel">🎯 Most likely songs (per-night odds)</div>
     <ol class="list">
-    <li class="song hot" style="--p:38.1;--i:0">
+    <li class="song blaze" style="--p:40.5;--i:0">
       <span class="rank">1</span>
       <div class="body">
-        <div class="meta"><span class="name">Wysteria Lane</span><span class="pct">38.1%</span></div>
+        <div class="meta"><span class="name">Hot Tea</span><span class="pct">40.5%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">19% recent rotation · set closer · eligible after N1</p>
+      </div>
+    </li>
+    <li class="song hot" style="--p:39.9;--i:1">
+      <span class="rank">2</span>
+      <div class="body">
+        <div class="meta"><span class="name">Tumble</span><span class="pct">39.9%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">13% recent rotation · set-2 launch pad · eligible after N1</p>
+      </div>
+    </li>
+    <li class="song hot" style="--p:39.3;--i:2">
+      <span class="rank">3</span>
+      <div class="body">
+        <div class="meta"><span class="name">Wysteria Lane</span><span class="pct">39.3%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:36.9;--i:1">
-      <span class="rank">2</span>
+    <li class="song hot" style="--p:37.2;--i:3">
+      <span class="rank">4</span>
       <div class="body">
-        <div class="meta"><span class="name">Good2B</span><span class="pct">36.9%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">16% recent rotation · 2026 debut · eligible after N1</p>
-      </div>
-    </li>
-    <li class="song hot" style="--p:36.1;--i:2">
-      <span class="rank">3</span>
-      <div class="body">
-        <div class="meta"><span class="name">Draconian Meter Maid</span><span class="pct">36.1%</span></div>
+        <div class="meta"><span class="name">Draconian Meter Maid</span><span class="pct">37.2%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:34.9;--i:3">
-      <span class="rank">4</span>
+    <li class="song hot" style="--p:36.0;--i:4">
+      <span class="rank">5</span>
       <div class="body">
-        <div class="meta"><span class="name">Drive</span><span class="pct">34.9%</span></div>
+        <div class="meta"><span class="name">Drive</span><span class="pct">36.0%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">16% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:34.5;--i:4">
-      <span class="rank">5</span>
-      <div class="body">
-        <div class="meta"><span class="name">Tumble</span><span class="pct">34.5%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">13% recent rotation · eligible after N1</p>
-      </div>
-    </li>
-    <li class="song hot" style="--p:34.5;--i:5">
+    <li class="song hot" style="--p:35.6;--i:5">
       <span class="rank">6</span>
       <div class="body">
-        <div class="meta"><span class="name">SALT</span><span class="pct">34.5%</span></div>
+        <div class="meta"><span class="name">SALT</span><span class="pct">35.6%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">13% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:34.0;--i:6">
+    <li class="song hot" style="--p:35.1;--i:6">
       <span class="rank">7</span>
       <div class="body">
-        <div class="meta"><span class="name">Same Old Shenanigans</span><span class="pct">34.0%</span></div>
+        <div class="meta"><span class="name">Same Old Shenanigans</span><span class="pct">35.1%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:33.7;--i:7">
+    <li class="song hot" style="--p:34.8;--i:7">
       <span class="rank">8</span>
       <div class="body">
-        <div class="meta"><span class="name">Yeti</span><span class="pct">33.7%</span></div>
+        <div class="meta"><span class="name">Yeti</span><span class="pct">34.8%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">15% recent rotation · show opener · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:33.4;--i:8">
+    <li class="song hot" style="--p:34.5;--i:8">
       <span class="rank">9</span>
       <div class="body">
-        <div class="meta"><span class="name">Into the Myst</span><span class="pct">33.4%</span></div>
+        <div class="meta"><span class="name">Into the Myst</span><span class="pct">34.5%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:32.2;--i:9">
+    <li class="song hot" style="--p:33.3;--i:9">
       <span class="rank">10</span>
       <div class="body">
-        <div class="meta"><span class="name">Everything Must Go</span><span class="pct">32.2%</span></div>
+        <div class="meta"><span class="name">Shama Lama Ding Dong</span><span class="pct">33.3%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">12% recent rotation · eligible after N1</p>
+        <p class="why">12% recent rotation · encore staple · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:32.2;--i:10">
+    <li class="song hot" style="--p:33.2;--i:10">
       <span class="rank">11</span>
       <div class="body">
-        <div class="meta"><span class="name">Red Bird</span><span class="pct">32.2%</span></div>
+        <div class="meta"><span class="name">Everything Must Go</span><span class="pct">33.2%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:31.2;--i:11">
+    <li class="song hot" style="--p:33.2;--i:11">
       <span class="rank">12</span>
       <div class="body">
-        <div class="meta"><span class="name">Atlas Dogs</span><span class="pct">31.2%</span></div>
+        <div class="meta"><span class="name">Red Bird</span><span class="pct">33.2%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">12% recent rotation · eligible after N1</p>
+      </div>
+    </li>
+    <li class="song hot" style="--p:32.2;--i:12">
+      <span class="rank">13</span>
+      <div class="body">
+        <div class="meta"><span class="name">Atlas Dogs</span><span class="pct">32.2%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">16% recent rotation · show opener · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:29.8;--i:12">
-      <span class="rank">13</span>
-      <div class="body">
-        <div class="meta"><span class="name">Feel It Now</span><span class="pct">29.8%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">12% recent rotation · eligible after N1</p>
-      </div>
-    </li>
-    <li class="song hot" style="--p:29.8;--i:13">
+    <li class="song hot" style="--p:30.8;--i:13">
       <span class="rank">14</span>
       <div class="body">
-        <div class="meta"><span class="name">Shama Lama Ding Dong</span><span class="pct">29.8%</span></div>
+        <div class="meta"><span class="name">Feel It Now</span><span class="pct">30.8%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:29.7;--i:14">
+    <li class="song hot" style="--p:30.6;--i:14">
       <span class="rank">15</span>
       <div class="body">
-        <div class="meta"><span class="name">MEDIA</span><span class="pct">29.7%</span></div>
+        <div class="meta"><span class="name">MEDIA</span><span class="pct">30.6%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">16% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:29.0;--i:15">
+    <li class="song hot" style="--p:29.9;--i:15">
       <span class="rank">16</span>
       <div class="body">
-        <div class="meta"><span class="name">Madhuvan</span><span class="pct">29.0%</span></div>
+        <div class="meta"><span class="name">All I Need</span><span class="pct">29.9%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">20% recent rotation · set-2 launch pad</p>
+        <p class="why">13% recent rotation · show opener · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:28.9;--i:16">
+    <li class="song hot" style="--p:29.9;--i:16">
       <span class="rank">17</span>
       <div class="body">
-        <div class="meta"><span class="name">Iguana Song</span><span class="pct">28.9%</span></div>
+        <div class="meta"><span class="name">Iguana Song</span><span class="pct">29.9%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song hot" style="--p:27.6;--i:17">
+    <li class="song hot" style="--p:26.8;--i:17">
       <span class="rank">18</span>
       <div class="body">
-        <div class="meta"><span class="name">All I Need</span><span class="pct">27.6%</span></div>
+        <div class="meta"><span class="name">Dr. Darkness</span><span class="pct">26.8%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">13% recent rotation · eligible after N1</p>
+        <p class="why">11% recent rotation · show opener · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:24.8;--i:18">
+    <li class="song warm" style="--p:23.1;--i:18">
       <span class="rank">19</span>
       <div class="body">
-        <div class="meta"><span class="name">Dr. Darkness</span><span class="pct">24.8%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">11% recent rotation · eligible after N1</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:22.4;--i:19">
-      <span class="rank">20</span>
-      <div class="body">
-        <div class="meta"><span class="name">Don&#x27;t Do It</span><span class="pct">22.4%</span></div>
+        <div class="meta"><span class="name">Don&#x27;t Do It</span><span class="pct">23.1%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">8% recent rotation · encore staple</p>
       </div>
     </li>
-    <li class="song warm" style="--p:22.0;--i:20">
-      <span class="rank">21</span>
+    <li class="song warm" style="--p:22.7;--i:19">
+      <span class="rank">20</span>
       <div class="body">
-        <div class="meta"><span class="name">Sinnerman</span><span class="pct">22.0%</span></div>
+        <div class="meta"><span class="name">Sinnerman</span><span class="pct">22.7%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">11% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:21.4;--i:21">
+    <li class="song warm" style="--p:21.8;--i:20">
+      <span class="rank">21</span>
+      <div class="body">
+        <div class="meta"><span class="name">Butter Rum</span><span class="pct">21.8%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">8% recent rotation · encore staple</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:21.8;--i:21">
       <span class="rank">22</span>
       <div class="body">
-        <div class="meta"><span class="name">Hot Tea</span><span class="pct">21.4%</span></div>
+        <div class="meta"><span class="name">So Ready</span><span class="pct">21.8%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">19% recent rotation · set closer</p>
+        <p class="why">24% recent rotation · set-2 launch pad · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:21.4;--i:22">
+    <li class="song warm" style="--p:21.7;--i:22">
       <span class="rank">23</span>
       <div class="body">
-        <div class="meta"><span class="name">Dripfield</span><span class="pct">21.4%</span></div>
-        <div class="track"><span class="fill"></span></div>
-        <p class="why">17% recent rotation · set closer</p>
-      </div>
-    </li>
-    <li class="song warm" style="--p:21.0;--i:23">
-      <span class="rank">24</span>
-      <div class="body">
-        <div class="meta"><span class="name">Animal</span><span class="pct">21.0%</span></div>
+        <div class="meta"><span class="name">Animal</span><span class="pct">21.7%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">27% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.9;--i:24">
+    <li class="song warm" style="--p:21.6;--i:23">
+      <span class="rank">24</span>
+      <div class="body">
+        <div class="meta"><span class="name">A Western Sun</span><span class="pct">21.6%</span></div>
+        <div class="track"><span class="fill"></span></div>
+        <p class="why">12% recent rotation · eligible after N1</p>
+      </div>
+    </li>
+    <li class="song warm" style="--p:21.6;--i:24">
       <span class="rank">25</span>
       <div class="body">
-        <div class="meta"><span class="name">A Western Sun</span><span class="pct">20.9%</span></div>
+        <div class="meta"><span class="name">California Magic</span><span class="pct">21.6%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">12% recent rotation · eligible after N1</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.9;--i:25">
+    <li class="song warm" style="--p:21.4;--i:25">
       <span class="rank">26</span>
       <div class="body">
-        <div class="meta"><span class="name">California Magic</span><span class="pct">20.9%</span></div>
+        <div class="meta"><span class="name">Turbulence &amp; The Night Rays</span><span class="pct">21.4%</span></div>
         <div class="track"><span class="fill"></span></div>
-        <p class="why">12% recent rotation · eligible after N1</p>
+        <p class="why">8% recent rotation</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.7;--i:26">
+    <li class="song warm" style="--p:21.4;--i:26">
       <span class="rank">27</span>
       <div class="body">
-        <div class="meta"><span class="name">Turbulence &amp; The Night Rays</span><span class="pct">20.7%</span></div>
+        <div class="meta"><span class="name">Don’t Leave Me This Way</span><span class="pct">21.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">8% recent rotation</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.7;--i:27">
+    <li class="song warm" style="--p:21.4;--i:27">
       <span class="rank">28</span>
       <div class="body">
-        <div class="meta"><span class="name">Don’t Leave Me This Way</span><span class="pct">20.7%</span></div>
+        <div class="meta"><span class="name">Seekers on the Ridge pt II</span><span class="pct">21.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">8% recent rotation</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.7;--i:28">
+    <li class="song warm" style="--p:21.4;--i:28">
       <span class="rank">29</span>
       <div class="body">
-        <div class="meta"><span class="name">Seekers on the Ridge pt II</span><span class="pct">20.7%</span></div>
+        <div class="meta"><span class="name">Seekers on the Ridge pt I</span><span class="pct">21.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">8% recent rotation</p>
       </div>
     </li>
-    <li class="song warm" style="--p:20.7;--i:29">
+    <li class="song warm" style="--p:21.4;--i:29">
       <span class="rank">30</span>
       <div class="body">
-        <div class="meta"><span class="name">Fish In The Sea</span><span class="pct">20.7%</span></div>
+        <div class="meta"><span class="name">Fish In The Sea</span><span class="pct">21.4%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">8% recent rotation</p>
       </div>
@@ -559,10 +605,10 @@ footer a{color:#ff8ac4}
     </ol>
     <div class="seclabel">✨ Wildcards &amp; near-locks</div>
     <ul class="list">
-    <li class="song wild blaze" style="--p:97;--i:0">
+    <li class="song wild blaze" style="--p:88;--i:0">
       <span class="rank">✨</span>
       <div class="body">
-        <div class="meta"><span class="name">≥ 1 cover this night</span><span class="pct">97%</span></div>
+        <div class="meta"><span class="name">≥ 1 cover this night</span><span class="pct">88%</span></div>
         <div class="track"><span class="fill"></span></div>
         <p class="why">88% of recent shows feature a cover; MSG marquee tier multiplies that</p>
       </div>

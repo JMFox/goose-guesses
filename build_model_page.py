@@ -89,8 +89,10 @@ song_data.sort(key=lambda s: -s["blended"])
 # Build stickiness map
 stickiness = {o["song"]: o["rho"] for o in parameters["stickiness_overrides"]}
 
-# Build venue tier map for JS
-venue_tiers = {t["tier"]: t for t in parameters["venue_tiers"]}
+# Build venue tier map for JS — filter audit_note before serialization
+venue_tiers = {}
+for t in parameters["venue_tiers"]:
+    venue_tiers[t["tier"]] = {k: v for k, v in t.items() if k not in {"audit_note"}}
 shows_info = {s["id"]: s for s in parameters["shows"]}
 
 empirical = predictions["empirical"]
@@ -163,6 +165,33 @@ MODEL_CSS = SHARED_CSS + """
 .minisong .bar{flex:0 0 60px; height:6px; border-radius:999px; background:rgba(255,255,255,.10); overflow:hidden}
 .minisong .bar > i{display:block; height:100%; background:linear-gradient(90deg,var(--c1),var(--c2));
   border-radius:inherit}
+
+/* ───── Mobile: stack sliders, shrink presets, scroll math ───── */
+@media (max-width: 720px){
+  .controls{grid-template-columns:1fr; gap:10px}
+  .param{padding:12px 14px}
+  .param .name{font-size:.88rem; flex-wrap:wrap}
+  .param .desc{font-size:.74rem}
+  .showsel{gap:6px}
+  .showsel button{padding:7px 12px; font-size:.8rem}
+  .preset{gap:6px}
+  .preset button{padding:5px 10px; font-size:.74rem}
+  .pgroup{font-size:.95rem; margin:24px 0 6px}
+  .pgroup .sm{font-size:.7rem}
+  .live{padding:12px 14px}
+  .live h3{font-size:.95rem}
+  .live .meta{font-size:.76rem}
+  .minilist{grid-template-columns:1fr; gap:6px}
+  .minisong{padding:7px 10px; font-size:.84rem}
+  .minisong .name{font-size:.88rem}
+  .minisong .pct{font-size:.85rem}
+  .minisong .bar{flex:0 0 40px}
+  .eqbox{padding:12px 14px}
+  .eqbox .eq{font-size:.74rem}
+  /* Display math: scrollable */
+  mjx-container[display="true"]{overflow-x:auto !important; overflow-y:hidden !important;
+    max-width:100%; -webkit-overflow-scrolling:touch}
+}
 """
 
 
@@ -176,6 +205,7 @@ const MODEL = {
   venueTiers: __TIERS__,
   shows: __SHOWS__,
   empirical: __EMPIRICAL__,
+  guestOnlyCovers: __GUEST_COVERS__,
 };
 
 // Current parameter values, populated from defaults on load
@@ -222,15 +252,18 @@ function gapMultiplier(gap, career, baseRate){
 function piFactor(name, fmt, pools){
   let m = 1.0;
   if (fmt === 'two_set_encore'){
-    if (pools.s2_open.has(name)) m *= currentParams.madhuvan_multiplier;
+    // Hot Tea exception: empirically a closer, not a launch pad
+    if (pools.s2_open.has(name) && name !== 'Hot Tea') m *= currentParams.madhuvan_multiplier;
     if (pools.encore.has(name))  m *= currentParams.encore_multiplier;
     if (pools.opener.has(name))  m *= currentParams.opener_multiplier;
-    if (pools.closer.has(name))  m *= currentParams.set_closer_multiplier;
+    if (pools.closer.has(name) || name === 'Hot Tea') m *= currentParams.set_closer_multiplier;
   }
   return Math.min(m, 1.25);
 }
 
 function debutFactor(song){
+  // Guest-only covers (Cortez, Hey Joe, etc) — strong damper; one-off only
+  if (MODEL.guestOnlyCovers.has(song.name)) return 0.20;
   if (song.is_2026_debut){
     const halfLife = currentParams.debut_halflife_shows;
     const plays = Math.max(song.plays_2026 || 1, 1);
@@ -274,7 +307,8 @@ function computeMarginals(showId, excludeSet){
     const g = gapMultiplier(s.gap, s.career, b);
     const pi = piFactor(s.name, fmt, pools);
     const D = debutFactor(s);
-    const ldn = (isEuro && s.in_london) ? currentParams.london_adjacency_boost : 1.0;
+    // Tour Variety Engine: songs played at the previous tour stop are LESS likely
+    const ldn = (isEuro && s.in_london) ? currentParams.london_recency_penalty : 1.0;
 
     // Bustout multiplier from venue tier (applied only to bustout-bump portion)
     let bustMult = tierInfo.bustout_mult;
@@ -483,6 +517,7 @@ window.addEventListener('DOMContentLoaded', initControls);
 
 
 def render():
+    guest_covers = [g["song"] for g in parameters.get("guest_only_covers", [])]
     js = (JS_MODEL
           .replace("__SONGS__", json.dumps(song_data))
           .replace("__PARAMS__", json.dumps(parameters["parameters"]))
@@ -490,6 +525,7 @@ def render():
           .replace("__TIERS__", json.dumps(venue_tiers))
           .replace("__SHOWS__", json.dumps(parameters["shows"]))
           .replace("__EMPIRICAL__", json.dumps(empirical))
+          .replace("__GUEST_COVERS__", f"new Set({json.dumps(guest_covers)})")
           )
 
     body = f'''

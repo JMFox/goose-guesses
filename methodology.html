@@ -181,6 +181,52 @@ footer a{color:#ff8ac4}
   background:linear-gradient(180deg, transparent 30%, rgba(7,7,31,.7));
   mix-blend-mode:multiply}
 
+/* ───────────────────── MOBILE-FIRST RESPONSIVE OVERRIDES ───────────────────── */
+@media (max-width: 640px){
+  .wrap{padding:14px 12px 60px}
+  header.hero{padding:30px 4px 18px}
+  .goose-art{width:110px; height:110px}
+  .halo{width:230px; height:230px}
+  .halo.two{width:160px; height:160px}
+  .kicker{letter-spacing:.35em; font-size:.66rem; margin:12px 0 2px}
+  h1{font-size:clamp(1.9rem, 11vw, 3rem) !important; line-height:1.05}
+  .venue{font-size:1rem}
+  .dates{font-size:.85rem}
+  .format{font-size:.74rem; padding:6px 12px}
+  nav{gap:6px; margin:8px -4px 20px; overflow-x:auto; flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch; padding:4px}
+  nav a{font-size:.78rem; padding:7px 12px; white-space:nowrap; flex:0 0 auto}
+  .assume{padding:18px 16px; border-radius:14px}
+  .assume h3{font-size:1rem; flex-wrap:wrap; gap:6px}
+  .assume h3 > span:last-child{margin-left:0 !important; width:100%; font-size:.7rem !important}
+  .assume ol{font-size:.86rem; padding-left:18px}
+  .assume li{margin:6px 0}
+  .assume .cov{font-size:.78rem}
+  .seclabel{font-size:1.05rem; margin:24px 2px 10px}
+  .song{padding:11px 12px; gap:10px; border-radius:14px}
+  .rank{flex:0 0 32px; height:32px; font-size:.88rem}
+  .name{font-size:.95rem}
+  .pct{font-size:.95rem}
+  .why{font-size:.76rem; line-height:1.45}
+  .track{height:9px}
+  .note{padding:12px 14px; font-size:.84rem; border-radius:12px}
+  .cards{grid-template-columns:1fr; gap:14px}
+  .card{padding:24px 18px; min-height:auto}
+  .card .cgoose{font-size:46px}
+  .card h2{font-size:1.3rem}
+  .statgrid{grid-template-columns:repeat(2, 1fr); gap:8px}
+  .statgrid .stat{padding:11px 12px}
+  .statgrid .stat .num{font-size:1.15rem}
+  .statgrid .stat .lbl{font-size:.7rem}
+  .twocol{grid-template-columns:1fr; gap:20px}
+  .imgstrip{grid-template-columns:1fr 1fr; gap:8px}
+  .imgstrip > div:nth-child(3){display:none}
+}
+
+/* Always allow long names to wrap so they don't blow out the layout */
+.song .meta{flex-wrap:wrap}
+.song .name{word-break:break-word; overflow-wrap:anywhere}
+
 .mdwrap{padding:30px 34px; border-radius:20px;
   background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
   backdrop-filter:blur(8px); margin:8px 0; line-height:1.7; font-size:.95rem;
@@ -216,6 +262,12 @@ footer a{color:#ff8ac4}
 /* MathJax rendering tweak */
 mjx-container{color:#fff !important}
 .mjx-math{font-size:1.05em}
+/* Make display math scrollable horizontally if wider than viewport */
+mjx-container[display="true"]{overflow-x:auto !important; overflow-y:hidden !important;
+  max-width:100%; padding:6px 2px; -webkit-overflow-scrolling:touch}
+mjx-container[display="true"]::-webkit-scrollbar{height:6px}
+mjx-container[display="true"]::-webkit-scrollbar-thumb{background:rgba(255,45,149,.4); border-radius:3px}
+.mdwrap{overflow-wrap:break-word; word-wrap:break-word}
 
 /* Parameter TL;DR table */
 .param-tldr{padding:24px 28px; border-radius:20px; margin:16px 0 28px;
@@ -247,6 +299,42 @@ mjx-container{color:#fff !important}
   background:rgba(0,240,255,.10); padding:2px 7px; border-radius:5px; letter-spacing:.04em}
 .param-tldr .legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; padding-top:12px;
   border-top:1px dashed rgba(255,255,255,.15); color:var(--muted); font-size:.78rem}
+
+/* ──── Mobile: collapse parameter table into stacked cards, scroll math ──── */
+@media (max-width: 720px){
+  .mdwrap{padding:18px 16px; font-size:.92rem; border-radius:14px}
+  .mdwrap h2{font-size:1.15rem; margin:18px 0 8px}
+  .mdwrap h3{font-size:1rem; margin:14px 0 6px}
+  .mdwrap h4{font-size:.92rem; margin:10px 0 4px}
+  .mdwrap pre{padding:10px 12px; font-size:.78rem}
+  .mdwrap table{font-size:.78rem; display:block; overflow-x:auto;
+    -webkit-overflow-scrolling:touch}
+  .mdwrap blockquote{padding:6px 10px; font-size:.86rem}
+  .mdwrap ul, .mdwrap ol{padding-left:18px}
+
+  .param-tldr{padding:18px 14px}
+  .param-tldr h3{font-size:1.05rem}
+  /* Convert table to stacked cards on small screens */
+  .param-tldr table, .param-tldr thead, .param-tldr tbody,
+  .param-tldr tr, .param-tldr td, .param-tldr th{display:block; width:100%}
+  .param-tldr thead{display:none}
+  .param-tldr tr{margin-bottom:14px; padding:12px 14px; border-radius:12px;
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10)}
+  .param-tldr td{border:0; padding:4px 0; position:relative}
+  .param-tldr td:nth-child(1) .pname{font-size:1.02rem}
+  .param-tldr td:nth-child(2){display:inline-block; margin-right:8px}
+  .param-tldr td:nth-child(3){display:inline-block}
+  .param-tldr td:nth-child(4){margin-top:6px; font-size:.84rem}
+  .param-tldr td:nth-child(5){display:inline-block; margin-top:4px}
+  .param-tldr .pdesc{margin-top:6px}
+  .param-tldr .legend{font-size:.72rem; gap:8px}
+}
+
+@media (max-width: 480px){
+  .param-tldr td:nth-child(2),
+  .param-tldr td:nth-child(3),
+  .param-tldr td:nth-child(5){display:inline-block; margin-right:8px}
+}
 
   </style>
   <script>window.MathJax = {tex:{inlineMath:[['$','$']], displayMath:[['$$','$$']], processEscapes:true}, options: {skipHtmlTags:['script','noscript','style','textarea']}};</script>
@@ -380,8 +468,8 @@ mjx-container{color:#fff !important}
         <tr>
           <td class="pname">🪿 Role Pool Size<span class="sub">Top-T Songs Per Role</span></td>
           <td><span class="sectag">Set-Position Priors</span></td>
-          <td><span class="pdef">8</span><br><span class="prange">[4, 20]</span></td>
-          <td class="pdesc">How many songs count as &#x27;set-2 launch pads&#x27;? 8 captures the recent rotation; 4 is tight, 20 is loose.</td>
+          <td><span class="pdef">12</span><br><span class="prange">[4, 20]</span></td>
+          <td class="pdesc">How many songs count as &#x27;set-2 launch pads&#x27;? Audit shows the top 8 captures only 35-44% of role slots; top 12 hits ~58% — wider pool is more honest.</td>
           <td><span class="punc unc-low">low</span></td>
         </tr>
         <tr>
@@ -413,11 +501,11 @@ mjx-container{color:#fff !important}
           <td><span class="punc unc-medium">medium</span></td>
         </tr>
         <tr>
-          <td class="pname">🪿 London Echo<span class="sub">Same-Leg Confirmation Boost</span></td>
+          <td class="pname">🪿 Tour Variety Engine<span class="sub">Just-Played-Last-Show Cooldown</span></td>
           <td><span class="sectag">Venue &amp; Leg</span></td>
-          <td><span class="pdef">1.20</span><br><span class="prange">[1.00, 1.50]</span></td>
-          <td class="pdesc">If a song played London 5/22, it gets a 20% nudge for Amsterdam. Tour-leg songbook signal.</td>
-          <td><span class="punc unc-low">low</span></td>
+          <td><span class="pdef">0.45</span><br><span class="prange">[0.10, 1.00]</span></td>
+          <td class="pdesc">Goose rotates hard. The empirical 5-day cross-venue overlap rate is 9.6% (n=61). A song played London 5/22 is MUCH less likely 5 days later in Amsterdam. 1.0 = no penalty, 0.45 = ~half as likely.</td>
+          <td><span class="punc unc-medium">medium</span></td>
         </tr>
         <tr>
           <td class="pname">🪿 FTP Fever<span class="sub">First-Time-Played Per Slot</span></td>
@@ -429,9 +517,9 @@ mjx-container{color:#fff !important}
         <tr>
           <td class="pname">🪿 New-Album Hype<span class="sub">BIG MODERN! Release-Week Boost</span></td>
           <td><span class="sectag">New Material</span></td>
-          <td><span class="pdef">1.50</span><br><span class="prange">[1.00, 3.00]</span></td>
-          <td class="pdesc">How much extra love does an unplayed BIG MODERN! track get at MSG N1 (7 days after release)?</td>
-          <td><span class="punc unc-high">high</span></td>
+          <td><span class="pdef">2.50</span><br><span class="prange">[1.00, 4.00]</span></td>
+          <td class="pdesc">How much extra love does an unplayed BIG MODERN! track get at MSG N1 (7 days after release)? Calibrated against the Everything Must Go release (Apr 2025) which averaged 1.6 debuts/show in week 1 vs 0.36 baseline (4.4x lift).</td>
+          <td><span class="punc unc-medium">medium</span></td>
         </tr>
         <tr>
           <td class="pname">🪿 Debut Halflife<span class="sub">Boost Decay (Shows)</span></td>
@@ -460,7 +548,7 @@ mjx-container{color:#fff !important}
         <span><span class="punc unc-low">low</span> = well-calibrated from data</span>
         <span><span class="punc unc-medium">medium</span> = empirical but speculative</span>
         <span><span class="punc unc-high">high</span> = expert prior, no data</span>
-        <span style="margin-left:auto">20 parameters · 6 song overrides · 5 venue tiers</span>
+        <span style="margin-left:auto">20 parameters · 3 song overrides · 5 venue tiers</span>
       </div>
     </section>
 

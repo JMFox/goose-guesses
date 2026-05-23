@@ -168,14 +168,14 @@
       "slug": "album_promotion",
       "display_name": "New-Album Hype",
       "subtitle": "BIG MODERN! Release-Week Boost",
-      "default": 1.50,
+      "default": 2.50,
       "min": 1.0,
-      "max": 3.0,
+      "max": 4.0,
       "step": 0.01,
       "controls": "D_{s,k} scale for confirmed-but-unplayed album tracks during release-week MSG run",
       "section": "debuts",
-      "description": "How much extra love does an unplayed BIG MODERN! track get at MSG N1 (7 days after release)?",
-      "uncertainty": "high"
+      "description": "How much extra love does an unplayed BIG MODERN! track get at MSG N1 (7 days after release)? Calibrated against the Everything Must Go release (Apr 2025) which averaged 1.6 debuts/show in week 1 vs 0.36 baseline (4.4x lift).",
+      "uncertainty": "medium"
     },
     {
       "slug": "debut_halflife_shows",
@@ -233,13 +233,13 @@
       "slug": "top_role_count",
       "display_name": "Role Pool Size",
       "subtitle": "Top-T Songs Per Role",
-      "default": 8,
+      "default": 12,
       "min": 4,
       "max": 20,
       "step": 1,
       "controls": "T_role (how many songs count as 'set-2 launch pads' / 'openers' / 'encore staples')",
       "section": "set_position",
-      "description": "How many songs count as 'set-2 launch pads'? 8 captures the recent rotation; 4 is tight, 20 is loose.",
+      "description": "How many songs count as 'set-2 launch pads'? Audit shows the top 8 captures only 35-44% of role slots; top 12 hits ~58% — wider pool is more honest.",
       "uncertainty": "low"
     },
     {
@@ -256,27 +256,36 @@
       "uncertainty": "medium"
     },
     {
-      "slug": "london_adjacency_boost",
-      "display_name": "London Echo",
-      "subtitle": "Same-Leg Confirmation Boost",
-      "default": 1.20,
-      "min": 1.0,
-      "max": 1.5,
+      "slug": "london_recency_penalty",
+      "display_name": "Tour Variety Engine",
+      "subtitle": "Just-Played-Last-Show Cooldown",
+      "default": 0.45,
+      "min": 0.10,
+      "max": 1.0,
       "step": 0.01,
-      "controls": "multiplicative boost for songs confirmed in the current leg's recent shows",
+      "controls": "multiplicative PENALTY for songs played in the previous show on this leg (e.g., London 5/22)",
       "section": "venue",
-      "description": "If a song played London 5/22, it gets a 20% nudge for Amsterdam. Tour-leg songbook signal.",
-      "uncertainty": "low"
+      "description": "Goose rotates hard. The empirical 5-day cross-venue overlap rate is 9.6% (n=61). A song played London 5/22 is MUCH less likely 5 days later in Amsterdam. 1.0 = no penalty, 0.45 = ~half as likely.",
+      "uncertainty": "medium"
     }
   ],
   "stickiness_overrides": [
-    {"song": "Hot Tea", "rho": -0.4, "rationale": "Two-set staple; opens both nights of several 2025 weekends"},
-    {"song": "Dripfield", "rho": -0.5, "rationale": "Set closer that has anchored both nights at Red Rocks"},
-    {"song": "Madhuvan", "rho": -0.3, "rationale": "Type-II vehicle; sometimes the show *is* Madhuvan"},
-    {"song": "Echo of a Rose", "rho": -0.6, "rationale": "Soft anchor; recurs across multi-night runs"},
-    {"song": "The Empress Of Organos", "rho": -0.7, "rationale": "Closer / encore staple"},
-    {"song": "Don't Do It", "rho": -0.5, "rationale": "Frequent encore across multi-night runs"}
+    {"song": "Big Modern!", "rho": -0.5, "rationale": "Only song with >=2 confirmed N1->N2 repeats since 2024 (Goosemas, Beacon)"},
+    {"song": "Echo of a Rose", "rho": -0.7, "rationale": "1 confirmed N1->N2 repeat (Capitol 9/24)"},
+    {"song": "Madhuvan", "rho": -0.7, "rationale": "1 confirmed N1->N2 repeat (Radio City 4/15/23) + Type-II vehicle"}
   ],
+  "guest_only_covers": [
+    {"song": "Cortez The Killer", "context": "Viva El Gonzo 5/9/26 with Jim James", "rationale": "One-off special occasion; not in standalone rotation"},
+    {"song": "Hey Joe", "context": "Viva El Gonzo 5/7/26 with Cory Wong (FTP)", "rationale": "One-off Hendrix cover at private destination festival; not in standalone rotation"},
+    {"song": "Don't Leave Me This Way", "context": "Harold Melvin cover — MSG 2025 + Hulaween + Athens", "rationale": "Played at marquee venues; would not be a normal Amsterdam pick"},
+    {"song": "Movin' Out (Anthony's Song)", "context": "Billy Joel cover with Stuart Bogie", "rationale": "Horn-dependent NYC-flavored cover; played at Viva El Gonzo only"}
+  ],
+  "hot_tea_slot_bias": {
+    "rationale": "AUDIT (Q8): Hot Tea distribution across 164 career plays — set1_closer 25.6%, set2_closer 17.7%, encore 15.2%, other_mid 30.5%, show_opener 6.7%, set2_opener only 4.3%. Hot Tea is a CLOSER, not a launch pad.",
+    "primary_roles": ["set1_closer", "set2_closer", "encore"],
+    "weak_roles": ["set2_opener"]
+  },
+  "hot_tea_slot_bias_applied": true,
   "venue_tiers": [
     {
       "tier": "marquee",
@@ -286,8 +295,9 @@
       "V_ci_high": 1.55,
       "bustout_mult": 1.8,
       "debut_per_slot": 0.015,
-      "cover_mult": 1.1,
-      "guest_sitin_likelihood": 0.40
+      "cover_mult": 1.0,
+      "guest_sitin_likelihood": 0.40,
+      "audit_note": "AUDIT Q7: marquee cover rate 88.9% essentially matches last-50 baseline 88.0%; cover_mult set to 1.0 (was 1.1). Marquee differentiation is via DEBUT covers, not MORE covers."
     },
     {
       "tier": "festival_anchor",

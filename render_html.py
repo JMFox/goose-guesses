@@ -197,6 +197,52 @@ footer a{color:#ff8ac4}
 .imgstrip > div::after{content:''; position:absolute; inset:0;
   background:linear-gradient(180deg, transparent 30%, rgba(7,7,31,.7));
   mix-blend-mode:multiply}
+
+/* ───────────────────── MOBILE-FIRST RESPONSIVE OVERRIDES ───────────────────── */
+@media (max-width: 640px){
+  .wrap{padding:14px 12px 60px}
+  header.hero{padding:30px 4px 18px}
+  .goose-art{width:110px; height:110px}
+  .halo{width:230px; height:230px}
+  .halo.two{width:160px; height:160px}
+  .kicker{letter-spacing:.35em; font-size:.66rem; margin:12px 0 2px}
+  h1{font-size:clamp(1.9rem, 11vw, 3rem) !important; line-height:1.05}
+  .venue{font-size:1rem}
+  .dates{font-size:.85rem}
+  .format{font-size:.74rem; padding:6px 12px}
+  nav{gap:6px; margin:8px -4px 20px; overflow-x:auto; flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch; padding:4px}
+  nav a{font-size:.78rem; padding:7px 12px; white-space:nowrap; flex:0 0 auto}
+  .assume{padding:18px 16px; border-radius:14px}
+  .assume h3{font-size:1rem; flex-wrap:wrap; gap:6px}
+  .assume h3 > span:last-child{margin-left:0 !important; width:100%; font-size:.7rem !important}
+  .assume ol{font-size:.86rem; padding-left:18px}
+  .assume li{margin:6px 0}
+  .assume .cov{font-size:.78rem}
+  .seclabel{font-size:1.05rem; margin:24px 2px 10px}
+  .song{padding:11px 12px; gap:10px; border-radius:14px}
+  .rank{flex:0 0 32px; height:32px; font-size:.88rem}
+  .name{font-size:.95rem}
+  .pct{font-size:.95rem}
+  .why{font-size:.76rem; line-height:1.45}
+  .track{height:9px}
+  .note{padding:12px 14px; font-size:.84rem; border-radius:12px}
+  .cards{grid-template-columns:1fr; gap:14px}
+  .card{padding:24px 18px; min-height:auto}
+  .card .cgoose{font-size:46px}
+  .card h2{font-size:1.3rem}
+  .statgrid{grid-template-columns:repeat(2, 1fr); gap:8px}
+  .statgrid .stat{padding:11px 12px}
+  .statgrid .stat .num{font-size:1.15rem}
+  .statgrid .stat .lbl{font-size:.7rem}
+  .twocol{grid-template-columns:1fr; gap:20px}
+  .imgstrip{grid-template-columns:1fr 1fr; gap:8px}
+  .imgstrip > div:nth-child(3){display:none}
+}
+
+/* Always allow long names to wrap so they don't blow out the layout */
+.song .meta{flex-wrap:wrap}
+.song .name{word-break:break-word; overflow-wrap:anywhere}
 """
 
 GRAIN = """<svg class="grain" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -463,11 +509,11 @@ def assumption_box(show, predictions):
 
     if is_euro:
         items.append(
-            f'<li><b>We give bonus points to songs played in London 5/22</b> (the freshest leg signal — those 11 songs are <em>definitely</em> in the current European songbook). European first-time markets like Amsterdam tend to get the band\'s most-loved jams rather than deep cuts or bustouts.</li>'
+            f'<li><b>The "Tour Variety Engine" cuts in hard.</b> Goose rotates — the empirical cross-venue 5-day overlap rate is just 9.6% (n=61). So songs played at <b>London 5/22</b> (Animal, Your Direction, So Ready, Big Modern!, Creatures, Turn On Your Love Light, etc.) get a steep down-weight for Amsterdam. They <em>just</em> played them.</li>'
         )
     else:
         items.append(
-            f'<li><b>MSG is the big stage.</b> We bumped up odds for "set-2 launch pad" jams (Hungersite, Thatch, Madhuvan), encore staples (Arcadia, Give It Time), and added a real possibility of a cover and a bustout from the deep catalog. Stuart Bogie\'s horns showed up at MSG 2025 — bet on them returning.</li>'
+            f'<li><b>MSG is the big stage.</b> We bumped up odds for "set-2 launch pad" jams (Hungersite, Thatch, Madhuvan), encore staples (Arcadia, Empress of Organos), and reserved real probability for a cover, a deep-catalog bustout, and Stuart Bogie\'s horns (they showed up at MSG 2025 — bet on a return).</li>'
         )
 
     if is_n2:
@@ -477,11 +523,11 @@ def assumption_box(show, predictions):
 
     if "msg" in show["id"]:
         items.append(
-            f'<li><b>BIG MODERN! drops June 12 — seven days before MSG N1.</b> Songs already debuted from the album (Good2B, MEDIA, Torero, SALT) get a release-week boost, and there\'s a real shot at a live debut of one of the unplayed album tracks (Scavenger, POP, Good Times // End Times).</li>'
+            f'<li><b>BIG MODERN! drops June 12 — seven days before MSG N1.</b> Songs already debuted from the album (Good2B, MEDIA, Torero, SALT) get a release-week boost (calibrated against <em>Everything Must Go</em>\'s 4.4× lift). Real shot at a live debut of one of the unplayed album tracks too (Scavenger, POP, Good Times // End Times, fast:slow).</li>'
         )
     else:
         items.append(
-            f'<li><b>New songs over-index.</b> 2026 debuts (Good2B, Cortez The Killer, Hey Joe) get a bump above their long-run rate while they\'re still "new", with the bump fading every show.</li>'
+            f'<li><b>New rotation songs get a bump</b> — Good2B is the main one for 2026. <em>Cortez The Killer</em> and <em>Hey Joe</em> were one-offs at Viva El Gonzo with Jim James and Cory Wong sitting in — they\'re NOT in standalone rotation, so we explicitly suppress them.</li>'
         )
 
     items.append(

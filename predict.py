@@ -36,6 +36,17 @@ def venue_tier(tier_name):
 
 
 STICKINESS = {o["song"]: o["rho"] for o in params["stickiness_overrides"]}
+# AUDIT (Q2/Q9): Of the 6 current stickiness overrides, only ECHO OF A ROSE and
+# MADHUVAN ever actually repeated N1->N2 same-venue across 9 years of data
+# (1 instance each, n=105 pairs). HOT TEA, DRIPFIELD, EMPRESS, DON'T DO IT have
+# NEVER repeated — the default rho=-0.95 already captures that behavior, so the
+# overrides are vibes-driven, not data-driven. Empirical "strong" anchors
+# (>=2 repeats) since 2024: ['Big Modern!'] only. Recommended override list:
+#   {"song": "Big Modern!", "rho": -0.5}    # 2x repeat in 2024-2025 (Goosemas, Beacon)
+#   {"song": "Echo of a Rose", "rho": -0.7} # 1x repeat (Capitol 9/24)
+#   {"song": "Madhuvan", "rho": -0.7}       # 1x repeat (Radio City 4/15/23)
+# Drop the rest. The default -0.95 stickiness already produces the empirically
+# correct ~1% N1->N2 repeat rate.
 
 # Build per-song lookups
 SONGS = {s["name"]: s for s in stats["songs"]}
@@ -88,6 +99,17 @@ print(f"London 5/22/26 setlist size: {len(LONDON_5_22)}")
 DEBUTS_2026 = set(d["name"] for d in stats.get("debuts_2026", []))
 RETURNS_2026 = set(r["name"] for r in stats.get("returns_2026", []))
 
+# Guest-only / special-occasion covers — should NOT receive the debut boost.
+# These are covers Goose played as one-offs with sit-in guests (e.g. Jim James,
+# Cory Wong at Viva El Gonzo private destination festival May 2026) and are
+# extremely unlikely to recur at standalone Amsterdam/MSG shows.
+GUEST_ONLY_COVERS = set(g["song"] for g in params.get("guest_only_covers", []))
+
+# Hot Tea slot bias — Hot Tea is a CLOSER/encore song, NOT a set-2 launch pad
+# (per audit Q8: only 4.3% of plays open set 2; 25.6% close set 1, 17.7%
+# close set 2, 15.2% encore).
+HOT_TEA_SLOT_BIAS = params.get("hot_tea_slot_bias", {})
+
 
 def base_rate(song_name):
     """b_s = blended rotation rate (55% 2026 tour, 45% last 50)."""
@@ -129,26 +151,36 @@ def gap_multiplier(gap_shows, career_plays, base_rate_s):
 
 
 def pi_factor(song_name, format_, pool):
-    """Set-position appropriateness multiplier — capped to prevent inflation."""
+    """Set-position appropriateness multiplier — capped to prevent inflation.
+
+    Special case: Hot Tea is empirically a CLOSER (set1/set2) and encore song,
+    not a set-2 launch pad (only 4.3% of plays). We explicitly remove it from
+    the launch-pad boost and add it to the closer boost.
+    """
     m = 1.0
     if format_ == "two_set_encore":
-        if song_name in pool["s2_open"]:
+        if song_name in pool["s2_open"] and song_name != "Hot Tea":
             m *= param("madhuvan_multiplier")
         if song_name in pool["encore"]:
             m *= param("encore_multiplier")
         if song_name in pool["opener"]:
             m *= param("opener_multiplier")
-        if song_name in pool["closer"]:
+        if song_name in pool["closer"] or song_name == "Hot Tea":
             m *= param("set_closer_multiplier")
-    # No pi adjustment for single-set: in a single set there are no
-    # opener/launch-pad/closer/encore role guarantees to bias toward.
-    # Cap at 1.25 to avoid double-counting the same song's "I'm a multi-role
-    # anchor" identity.
     return min(m, 1.25)
 
 
 def debut_factor(song_name, show_date):
-    """D_{s,k}: new material over-indexes; unplayed BIG MODERN! tracks get hype."""
+    """D_{s,k}: new material over-indexes; unplayed BIG MODERN! tracks get hype.
+
+    Critical exclusion: GUEST_ONLY_COVERS (Cortez The Killer, Hey Joe, etc.)
+    are NOT given the 2026-debut boost. They appeared at Viva El Gonzo with
+    sit-in guests (Jim James, Cory Wong) and are extremely unlikely to recur
+    at standalone Amsterdam/MSG shows where those guests are not present.
+    """
+    if song_name in GUEST_ONLY_COVERS:
+        return 0.20  # Strong damper — guest-only one-offs
+
     s = SONGS.get(song_name)
     if not s:
         return 1.0
@@ -167,8 +199,20 @@ def debut_factor(song_name, show_date):
 
 
 def london_boost(song_name, is_euro):
+    # AUDIT (assumptions_audit.py, Q1): empirical cross-venue overlap at the
+    # 5-day gap (London 5/22 -> Amsterdam 5/27) is 9.6% post-2024 (n=61),
+    # which is ~10x the same-venue baseline of ~0.9% but also indicates that
+    # roughly 1 in 10 songs DO carry across. The current parameter slug is
+    # `london_recency_penalty` (default 0.55) — a multiplicative damper. The
+    # call below references the old slug `london_adjacency_boost` and KeyErrors.
+    # Recommended fix:
+    #     if is_euro and song_name in LONDON_5_22:
+    #         return param("london_recency_penalty")   # ~0.80 is the data-implied value
+    #     return 1.0
+    # The 0.55 default is too aggressive given the data — propose raising to 0.80
+    # so a London-played song is only mildly damped on a 5-day cross-venue jump.
     if is_euro and song_name in LONDON_5_22:
-        return param("london_adjacency_boost")
+        return param("london_recency_penalty")
     return 1.0
 
 
@@ -293,7 +337,9 @@ def rationale(name, show, n1_set=None):
     elif name in pool["opener"]:
         bits.append("show opener")
 
-    if name in DEBUTS_2026:
+    if name in GUEST_ONLY_COVERS:
+        bits.append("Gonzo-only guest cover")
+    elif name in DEBUTS_2026:
         bits.append("2026 debut")
     elif name in RETURNS_2026:
         bits.append("recent return")
@@ -342,6 +388,12 @@ def bustout_picks(top_n=4):
 
 # Cover probability per show
 def cover_prob(tier_info):
+    # AUDIT (Q7): last-50 P(>=1 cover) = 88.0% — the 0.88 baseline is exact.
+    # `cover_appetite` default 1.0 is correct. Marquee cover rate is 88.9%
+    # (n=27 marquee shows) — IDENTICAL to last-50 baseline. The current
+    # marquee `cover_mult`=1.1 is overconfident; recommend setting it to **1.00**
+    # (or 1.05 to leave some asymmetry headroom). Marquee shows are not
+    # cover-heavier than typical shows.
     base_p = stats.get("cover_stats", {}).get("shows_with_cover_pct_last_50", 0.88)
     return min(0.99, base_p * tier_info.get("cover_mult", 1.0) * param("cover_appetite"))
 

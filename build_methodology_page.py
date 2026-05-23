@@ -44,6 +44,12 @@ EXTRA_CSS = SHARED_CSS + """
 /* MathJax rendering tweak */
 mjx-container{color:#fff !important}
 .mjx-math{font-size:1.05em}
+/* Make display math scrollable horizontally if wider than viewport */
+mjx-container[display="true"]{overflow-x:auto !important; overflow-y:hidden !important;
+  max-width:100%; padding:6px 2px; -webkit-overflow-scrolling:touch}
+mjx-container[display="true"]::-webkit-scrollbar{height:6px}
+mjx-container[display="true"]::-webkit-scrollbar-thumb{background:rgba(255,45,149,.4); border-radius:3px}
+.mdwrap{overflow-wrap:break-word; word-wrap:break-word}
 
 /* Parameter TL;DR table */
 .param-tldr{padding:24px 28px; border-radius:20px; margin:16px 0 28px;
@@ -75,6 +81,42 @@ mjx-container{color:#fff !important}
   background:rgba(0,240,255,.10); padding:2px 7px; border-radius:5px; letter-spacing:.04em}
 .param-tldr .legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; padding-top:12px;
   border-top:1px dashed rgba(255,255,255,.15); color:var(--muted); font-size:.78rem}
+
+/* ──── Mobile: collapse parameter table into stacked cards, scroll math ──── */
+@media (max-width: 720px){
+  .mdwrap{padding:18px 16px; font-size:.92rem; border-radius:14px}
+  .mdwrap h2{font-size:1.15rem; margin:18px 0 8px}
+  .mdwrap h3{font-size:1rem; margin:14px 0 6px}
+  .mdwrap h4{font-size:.92rem; margin:10px 0 4px}
+  .mdwrap pre{padding:10px 12px; font-size:.78rem}
+  .mdwrap table{font-size:.78rem; display:block; overflow-x:auto;
+    -webkit-overflow-scrolling:touch}
+  .mdwrap blockquote{padding:6px 10px; font-size:.86rem}
+  .mdwrap ul, .mdwrap ol{padding-left:18px}
+
+  .param-tldr{padding:18px 14px}
+  .param-tldr h3{font-size:1.05rem}
+  /* Convert table to stacked cards on small screens */
+  .param-tldr table, .param-tldr thead, .param-tldr tbody,
+  .param-tldr tr, .param-tldr td, .param-tldr th{display:block; width:100%}
+  .param-tldr thead{display:none}
+  .param-tldr tr{margin-bottom:14px; padding:12px 14px; border-radius:12px;
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10)}
+  .param-tldr td{border:0; padding:4px 0; position:relative}
+  .param-tldr td:nth-child(1) .pname{font-size:1.02rem}
+  .param-tldr td:nth-child(2){display:inline-block; margin-right:8px}
+  .param-tldr td:nth-child(3){display:inline-block}
+  .param-tldr td:nth-child(4){margin-top:6px; font-size:.84rem}
+  .param-tldr td:nth-child(5){display:inline-block; margin-top:4px}
+  .param-tldr .pdesc{margin-top:6px}
+  .param-tldr .legend{font-size:.72rem; gap:8px}
+}
+
+@media (max-width: 480px){
+  .param-tldr td:nth-child(2),
+  .param-tldr td:nth-child(3),
+  .param-tldr td:nth-child(5){display:inline-block; margin-right:8px}
+}
 """
 
 # ─────────────────────────────────────────────────────── parameter TL;DR table
