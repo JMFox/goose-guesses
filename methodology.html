@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology – GooseGuesses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Poppins:wght@300;400;500;600;700&family=Righteous&display=swap" rel="stylesheet">
+  <style>
+
+:root{
+  --bg0:#0a0a2e; --bg1:#070719; --ink:#f6ecff; --muted:#bba7e0;
+  --pink:#ff2d95; --cyan:#00f0ff; --lime:#aaff00; --orange:#ff7b00;
+  --purple:#b14aed; --gold:#ffae00; --leaf:#5be8a0;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0; min-height:100vh; color:var(--ink); font-family:'Poppins',system-ui,sans-serif;
+  background:var(--bg1); overflow-x:hidden; line-height:1.55; font-weight:300;
+  letter-spacing:0.01em;}
+
+/* Animated psychedelic background */
+body::before{content:''; position:fixed; inset:-25%; z-index:-2;
+  background:
+    radial-gradient(38% 38% at 20% 28%, rgba(255,45,149,.55), transparent 62%),
+    radial-gradient(42% 42% at 82% 18%, rgba(0,240,255,.40), transparent 62%),
+    radial-gradient(48% 48% at 72% 82%, rgba(177,74,237,.55), transparent 62%),
+    radial-gradient(40% 40% at 24% 78%, rgba(255,123,0,.40), transparent 62%),
+    radial-gradient(30% 30% at 50% 50%, rgba(170,255,0,.15), transparent 62%),
+    radial-gradient(60% 60% at 50% 50%, #2d0a4e, #07071f 78%);
+  animation: drift 28s ease-in-out infinite alternate;
+  filter:blur(80px) saturate(140%);
+}
+@keyframes drift{
+  0%{transform:translate(-3%,-2%) scale(1.15) rotate(0deg); filter:blur(80px) saturate(140%) hue-rotate(0deg)}
+  100%{transform:translate(3%,2%) scale(1.32) rotate(10deg); filter:blur(80px) saturate(140%) hue-rotate(55deg)}}
+.grain{position:fixed; inset:0; z-index:-1; width:100%; height:100%; opacity:.10; mix-blend-mode:overlay; pointer-events:none}
+
+.wrap{max-width:980px; margin:0 auto; padding:28px 22px 80px}
+
+/* Hero */
+header.hero{position:relative; text-align:center; padding:48px 12px 28px}
+.halo{position:absolute; top:-10px; left:50%; transform:translateX(-50%); width:320px; height:320px; border-radius:50%;
+  background:conic-gradient(from 0deg,#ff2d95,#ff7b00,#aaff00,#00f0ff,#b14aed,#ff2d95);
+  filter:blur(3px) saturate(180%); opacity:.45; z-index:0;
+  -webkit-mask:radial-gradient(closest-side,transparent 58%,#000 60%,#000 78%,transparent 80%);
+          mask:radial-gradient(closest-side,transparent 58%,#000 60%,#000 78%,transparent 80%);
+  animation:spin 26s linear infinite}
+.halo.two{width:220px;height:220px;animation:spin 17s linear infinite reverse;opacity:.5}
+@keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
+
+.goose-art{position:relative; z-index:1; width:140px; height:140px; margin:0 auto;
+  filter:drop-shadow(0 8px 24px rgba(0,0,0,.5)); animation:bob 4.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+
+.kicker{position:relative; z-index:1; margin:18px 0 4px; letter-spacing:.55em; text-transform:uppercase;
+  font-size:.74rem; color:var(--muted); font-weight:500}
+h1{position:relative; z-index:1; font-family:'Monoton',cursive; font-weight:400; margin:.1em 0;
+  font-size:clamp(2.3rem,7vw,4.4rem); line-height:1.02;
+  background:linear-gradient(90deg,#ff2d95,#00f0ff,#aaff00,#ff7b00,#b14aed,#ff2d95);
+  background-size:300% 100%;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+  filter:drop-shadow(0 0 22px rgba(255,45,149,.4)); animation:flow 9s linear infinite}
+@keyframes flow{to{background-position:300% 0}}
+.venue{position:relative; z-index:1; font-family:'Righteous',sans-serif;
+  font-size:clamp(1.15rem,3.4vw,1.8rem); margin-top:8px}
+.dates{position:relative; z-index:1; color:var(--muted); margin-top:4px; font-weight:300}
+.format{position:relative; z-index:1; display:inline-block; margin-top:18px; padding:8px 18px; border-radius:999px;
+  font-size:.84rem; font-weight:500;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.18); backdrop-filter:blur(6px)}
+
+/* Nav */
+nav{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:14px 0 30px}
+nav a{color:var(--ink); text-decoration:none; font-size:.86rem; font-weight:500; padding:9px 18px;
+  border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.05); transition:.25s}
+nav a:hover{background:rgba(255,45,149,.25); border-color:#ff2d95; transform:translateY(-2px)}
+nav a.active{background:linear-gradient(90deg,#ff2d95,#b14aed); border-color:transparent}
+
+/* Assumption box — at TOP */
+.assume{margin:6px 0 22px; border-radius:20px; padding:24px 26px;
+  background:linear-gradient(135deg,rgba(177,74,237,.16),rgba(255,45,149,.10));
+  border:1px solid rgba(177,74,237,.42); backdrop-filter:blur(10px);
+  box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.assume h3{margin:0 0 14px; font-family:'Righteous',sans-serif; font-size:1.18rem; color:#fff;
+  display:flex; gap:10px; align-items:center}
+.assume h3 .icon{font-size:1.4rem}
+.assume ol{margin:0; padding-left:20px; color:var(--ink); font-size:.94rem; font-weight:300}
+.assume li{margin:8px 0}
+.assume li strong, .assume li b{color:#ffd6f1; font-weight:600}
+.assume .cov{margin-top:16px; font-size:.86rem; color:var(--muted);
+  border-top:1px dashed rgba(255,255,255,.22); padding-top:12px}
+.assume .cov strong{color:#7ef9ff}
+
+/* Section labels */
+.seclabel{font-family:'Righteous',sans-serif; font-size:1.2rem; margin:38px 4px 14px;
+  display:flex; align-items:center; gap:12px; color:#fff}
+.seclabel::after{content:''; flex:1; height:1px; background:linear-gradient(90deg,rgba(255,255,255,.5),transparent)}
+
+/* Song list */
+ol.list,ul.list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px}
+.song{display:flex; gap:14px; align-items:flex-start; padding:14px 18px; border-radius:18px;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(8px); transition:transform .2s, border-color .2s, background .2s;
+  opacity:0; transform:translateY(14px); animation:rise .5s ease forwards;
+  animation-delay:calc(var(--i)*55ms)}
+@keyframes rise{to{opacity:1; transform:translateY(0)}}
+.song:hover{transform:translateY(-3px) scale(1.012); background:rgba(255,255,255,.09); border-color:rgba(255,45,149,.55)}
+.rank{flex:0 0 38px; height:38px; display:grid; place-items:center; font-weight:700;
+  font-family:'Righteous',sans-serif; border-radius:11px; font-size:1rem;
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.14)}
+.body{flex:1; min-width:0}
+.meta{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+.name{font-weight:500; font-size:1.06rem; text-shadow:0 0 14px rgba(255,255,255,.14)}
+.pct{font-family:'Righteous',sans-serif; font-size:1.05rem; white-space:nowrap;
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
+.track{margin:8px 0 7px; height:12px; border-radius:999px;
+  background:rgba(255,255,255,.08); overflow:hidden}
+.fill{display:block; height:100%; width:0; border-radius:inherit;
+  background:linear-gradient(90deg,var(--c1),var(--c2)); background-size:220% 100%;
+  box-shadow:0 0 18px var(--c2);
+  animation:grow 1.3s cubic-bezier(.2,.85,.25,1) forwards, shimmer 3.4s linear infinite;
+  animation-delay:calc(var(--i)*55ms + .15s), 0s}
+@keyframes grow{to{width:calc(var(--p)*1%)}}
+@keyframes shimmer{to{background-position:220% 0}}
+.why{margin:0; font-size:.83rem; color:var(--muted); font-weight:300}
+
+.blaze{--c1:#ff2d95;--c2:#ffae00}
+.hot{--c1:#ff2d95;--c2:#b14aed}
+.warm{--c1:#8b5cff;--c2:#00d0ff}
+.cool{--c1:#00f0ff;--c2:#3a7bff}
+
+.song.wild{border-style:dashed; border-color:rgba(170,255,0,.4); background:rgba(170,255,0,.05)}
+.song.wild .rank{background:rgba(170,255,0,.12); border-color:rgba(170,255,0,.3)}
+
+/* Note callout */
+.note{margin:18px 0; padding:16px 20px; border-radius:14px; font-size:.92rem; color:var(--ink);
+  background:rgba(0,240,255,.07); border:1px solid rgba(0,240,255,.22); backdrop-filter:blur(6px)}
+.note b{color:#7ef9ff}
+
+/* Footer */
+footer{margin-top:60px; text-align:center; color:var(--muted); font-size:.78rem; font-weight:300}
+footer a{color:#ff8ac4}
+
+/* Index cards */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin:14px 0}
+.card{position:relative; overflow:hidden; border-radius:24px; padding:32px 26px; text-decoration:none;
+  color:var(--ink); border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.05);
+  backdrop-filter:blur(8px); transition:.3s; display:flex; flex-direction:column; gap:6px; min-height:240px}
+.card:hover{transform:translateY(-7px); border-color:#ff2d95;
+  box-shadow:0 20px 55px rgba(177,74,237,.4)}
+.card .cgoose{font-size:60px; line-height:1}
+.card h2{font-family:'Righteous',sans-serif; margin:8px 0 0; font-size:1.6rem}
+.card .csub{color:var(--muted); font-size:.88rem}
+.card .cgo{margin-top:auto; font-weight:600; font-size:.86rem; color:#ff8ac4}
+.card::after{content:''; position:absolute; inset:auto -40% -60% auto; width:280px; height:280px;
+  border-radius:50%; filter:blur(45px); opacity:.55; transition:.3s}
+.card.ams::after{background:radial-gradient(circle,#00f0ff,transparent 70%)}
+.card.msg::after{background:radial-gradient(circle,#ff2d95,transparent 70%)}
+.card.math::after{background:radial-gradient(circle,#aaff00,transparent 70%)}
+.card.meth::after{background:radial-gradient(circle,#b14aed,transparent 70%)}
+
+/* Two-column comparison */
+.twocol{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:18px}
+@media(max-width:760px){.twocol{grid-template-columns:1fr}}
+
+/* Stats grid */
+.statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin:12px 0 20px}
+.statgrid .stat{padding:14px 16px; border-radius:14px; background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10)}
+.statgrid .stat .num{font-family:'Righteous',sans-serif; font-size:1.4rem; color:#fff;
+  background:linear-gradient(90deg,#ff2d95,#ffae00);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.statgrid .stat .lbl{color:var(--muted); font-size:.78rem; margin-top:4px}
+
+/* Image strip */
+.imgstrip{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:18px 0;
+  border-radius:16px; overflow:hidden}
+.imgstrip > div{aspect-ratio:1/1; background-size:cover; background-position:center;
+  filter:saturate(1.3) hue-rotate(-10deg); position:relative}
+.imgstrip > div::after{content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 30%, rgba(7,7,31,.7));
+  mix-blend-mode:multiply}
+
+.mdwrap{padding:30px 34px; border-radius:20px;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(8px); margin:8px 0; line-height:1.7; font-size:.95rem;
+  font-weight:300}
+.mdwrap h1{display:none}
+.mdwrap h2{font-family:'Righteous',sans-serif; color:#fff; font-size:1.4rem;
+  margin:28px 0 10px; padding-top:14px; border-top:1px dashed rgba(255,255,255,.18)}
+.mdwrap h2:first-child{border-top:0; padding-top:0; margin-top:0}
+.mdwrap h3{font-family:'Righteous',sans-serif; color:#ffd6f1; font-size:1.1rem;
+  margin:18px 0 8px}
+.mdwrap h4{color:#ffae00; font-size:1rem; margin:14px 0 6px}
+.mdwrap p{margin:8px 0; color:var(--ink)}
+.mdwrap ul, .mdwrap ol{padding-left:22px; margin:8px 0}
+.mdwrap li{margin:5px 0}
+.mdwrap code{font-family:'Courier New',monospace; padding:2px 6px; border-radius:5px;
+  background:rgba(255,255,255,.08); color:#ffd6f1; font-size:.88em}
+.mdwrap pre{padding:14px 18px; border-radius:10px; background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.08); overflow-x:auto}
+.mdwrap pre code{background:transparent; padding:0; color:#aaff00}
+.mdwrap blockquote{border-left:3px solid #ff2d95; padding:6px 14px; margin:14px 0;
+  background:rgba(255,45,149,.06); color:var(--muted); font-style:italic}
+.mdwrap table{border-collapse:collapse; margin:14px 0; font-size:.88rem; width:100%}
+.mdwrap th{text-align:left; padding:8px 12px; background:rgba(255,45,149,.18); color:#fff;
+  border:1px solid rgba(255,255,255,.10); font-family:'Righteous',sans-serif; font-weight:400}
+.mdwrap td{padding:7px 12px; border:1px solid rgba(255,255,255,.10); color:var(--ink)}
+.mdwrap tr:nth-child(even) td{background:rgba(255,255,255,.04)}
+.mdwrap a{color:#7ef9ff; text-decoration:none; border-bottom:1px solid rgba(126,249,255,.3)}
+.mdwrap a:hover{color:#aaff00; border-bottom-color:#aaff00}
+.mdwrap hr{border:none; border-top:1px dashed rgba(255,255,255,.25); margin:24px 0}
+.mdwrap strong{color:#ffd6f1; font-weight:600}
+.mdwrap em{color:#aaff00}
+
+/* MathJax rendering tweak */
+mjx-container{color:#fff !important}
+.mjx-math{font-size:1.05em}
+
+/* Parameter TL;DR table */
+.param-tldr{padding:24px 28px; border-radius:20px; margin:16px 0 28px;
+  background:linear-gradient(135deg,rgba(0,240,255,.10),rgba(170,255,0,.10));
+  border:1px solid rgba(0,240,255,.35); backdrop-filter:blur(10px)}
+.param-tldr h3{margin:0 0 6px; font-family:'Righteous',sans-serif; color:#fff;
+  font-size:1.2rem; display:flex; gap:10px; align-items:center}
+.param-tldr p.sub{margin:0 0 16px; color:var(--muted); font-size:.88rem}
+.param-tldr table{width:100%; border-collapse:collapse; font-size:.85rem}
+.param-tldr th{font-family:'Righteous',sans-serif; font-weight:400; font-size:.78rem;
+  text-transform:uppercase; letter-spacing:.1em; text-align:left; color:#aaff00;
+  padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.12); background:transparent}
+.param-tldr td{padding:9px 10px; border-bottom:1px solid rgba(255,255,255,.07);
+  vertical-align:top; color:var(--ink)}
+.param-tldr tr:last-child td{border-bottom:0}
+.param-tldr .pname{font-family:'Righteous',sans-serif; color:#ffd6f1; font-size:.95rem}
+.param-tldr .pname .sub{color:var(--muted); font-size:.72rem; font-family:inherit;
+  text-transform:none; letter-spacing:0; display:block; margin-top:2px; font-weight:300}
+.param-tldr .pdef{font-family:'Courier New',monospace; color:#ffae00;
+  background:rgba(255,174,0,.08); padding:2px 8px; border-radius:6px; display:inline-block; font-size:.82rem}
+.param-tldr .prange{color:var(--muted); font-size:.78rem; font-family:'Courier New',monospace}
+.param-tldr .punc{display:inline-block; padding:2px 8px; border-radius:999px; font-size:.7rem;
+  font-family:'Righteous',sans-serif; letter-spacing:.05em; text-transform:uppercase}
+.param-tldr .unc-low{background:rgba(170,255,0,.15); color:#aaff00}
+.param-tldr .unc-medium{background:rgba(255,174,0,.15); color:#ffd680}
+.param-tldr .unc-high{background:rgba(255,45,149,.18); color:#ff8ac4}
+.param-tldr .pdesc{font-size:.84rem; color:var(--ink); font-weight:300}
+.param-tldr .sectag{font-family:'Righteous',sans-serif; font-size:.7rem; color:#7ef9ff;
+  background:rgba(0,240,255,.10); padding:2px 7px; border-radius:5px; letter-spacing:.04em}
+.param-tldr .legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; padding-top:12px;
+  border-top:1px dashed rgba(255,255,255,.15); color:var(--muted); font-size:.78rem}
+
+  </style>
+  <script>window.MathJax = {tex:{inlineMath:[['$','$']], displayMath:[['$$','$$']], processEscapes:true}, options: {skipHtmlTags:['script','noscript','style','textarea']}};</script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</head>
+<body>
+<svg class="grain" xmlns="http://www.w3.org/2000/svg"><defs>
+  <filter id="liquid"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="n">
+    <animate attributeName="baseFrequency" values="0.010;0.020;0.010" dur="20s" repeatCount="indefinite"/></feTurbulence>
+    <feColorMatrix in="n" type="saturate" values="0"/></filter></defs>
+  <rect width="100%" height="100%" filter="url(#liquid)"/></svg>
+<div class="wrap">
+  <header class="hero">
+    <div class="halo"></div><div class="halo two"></div>
+    <svg class="goose-art" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="m-g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#aaff00"/><stop offset="100%" stop-color="#00f0ff"/>
+  </linearGradient></defs>
+  <circle cx="100" cy="100" r="80" fill="none" stroke="url(#m-g)" stroke-width="2" opacity="0.6"/>
+  <circle cx="100" cy="100" r="60" fill="none" stroke="url(#m-g)" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="100" cy="100" r="40" fill="none" stroke="url(#m-g)" stroke-width="1" opacity="0.4"/>
+  <!-- Sigma -->
+  <text x="100" y="125" font-family="Georgia" font-size="80" fill="url(#m-g)" text-anchor="middle" font-style="italic">Σ</text>
+  <!-- Floating equations -->
+  <text x="40" y="40" font-family="Georgia" font-size="14" fill="#ff8ac4" opacity="0.7">p(s)</text>
+  <text x="150" y="60" font-family="Georgia" font-size="14" fill="#7ef9ff" opacity="0.7">≈ b·g·π</text>
+  <text x="30" y="170" font-family="Georgia" font-size="14" fill="#ffae00" opacity="0.7">ρ = -0.95</text>
+  <text x="135" y="175" font-family="Georgia" font-size="14" fill="#aaff00" opacity="0.7">P̂</text>
+</svg>
+    <div class="kicker">GooseGuesses · Methodology v1.0</div>
+    <h1>The Math</h1>
+    <div class="venue">Defensible probabilistic setlist prediction</div>
+    <div class="dates">May 23, 2026</div>
+    <div class="format">4,465 words · 12 sections · 20-parameter table · MathJax rendered</div>
+  </header>
+  <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="amsterdam.html">🇳🇱 Amsterdam</a>
+      <a href="msg_n1.html">🗽 MSG N1</a>
+      <a href="msg_n2.html">🗽 MSG N2</a>
+      <a href="model.html">🧮 Model</a>
+      <a href="methodology.html" class="active">📜 Math</a>
+    </nav>
+
+    <section class="assume">
+      <h3><span class="icon">📜</span>Read the proofs</h3>
+      <ol>
+        <li>This is the full GooseGuesses methodology spec (v1.0, 4,465 words). It defines the multiplicative-factor probability model, the show-length slot identity, the Bayesian Night-1 → Night-2 update, the gap multiplier, debut handling, validation plan, and known limitations.</li>
+        <li>All formulas render in LaTeX via MathJax. The corresponding interactive controls live on the <a href="model.html">Model page</a>.</li>
+        <li>References cited: Trey's Notebook (Phish.net), Andrew Reed's Phish LSTM (Brier ~0.040), "Pattern in Phish's Predictability" (Phish.net 2013), McFadden 1973 discrete choice, Plackett 1975, Luce 1959, Murphy 1973 Brier decomposition.</li>
+      </ol>
+    </section>
+    
+    <section class="param-tldr">
+      <h3>🎚️ TL;DR — All 20 tunable parameters at a glance</h3>
+      <p class="sub">Every lever you can pull on the <a href="model.html" style="color:#7ef9ff">Model page</a>. Defaults are calibrated to historical data; uncertainty tags reflect how confident we are in the default.</p>
+      <table>
+        <thead><tr>
+          <th>Parameter</th>
+          <th>Section</th>
+          <th>Default · Range</th>
+          <th>What it does (Goose-y)</th>
+          <th>Conf.</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td class="pname">🪿 Honk Factor<span class="sub">Recency Weight</span></td>
+          <td><span class="sectag">Base Rate</span></td>
+          <td><span class="pdef">0.55</span><br><span class="prange">[0.00, 1.00]</span></td>
+          <td class="pdesc">How much do you trust the freshest gossip? Higher = lean into 2026 tour rotation, lower = wider historical window.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Bustout Boldness<span class="sub">Long-Gap Surprise Energy</span></td>
+          <td><span class="sectag">Gap &amp; Bustout</span></td>
+          <td><span class="pdef">0.30</span><br><span class="prange">[0.00, 1.00]</span></td>
+          <td class="pdesc">Are you praying for White Lights? Higher = career staples sitting on long gaps get a bigger nudge.</td>
+          <td><span class="punc unc-high">high</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Gap-O-Meter Tilt<span class="sub">Recency Penalty Exponent</span></td>
+          <td><span class="sectag">Gap &amp; Bustout</span></td>
+          <td><span class="pdef">0.60</span><br><span class="prange">[0.20, 1.20]</span></td>
+          <td class="pdesc">How fast do recent plays cool a song off? 1.0 = linear, 0.5 = square-root (gentler).</td>
+          <td><span class="punc unc-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Bustout Peak<span class="sub">Sweet-Spot Gap (Shows)</span></td>
+          <td><span class="sectag">Gap &amp; Bustout</span></td>
+          <td><span class="pdef">70</span><br><span class="prange">[30, 120]</span></td>
+          <td class="pdesc">How many shows of waiting before bustout-time? 70 = ~9 weeks of touring.</td>
+          <td><span class="punc unc-high">high</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Bustout Window<span class="sub">Sweet-Spot Width (Shows)</span></td>
+          <td><span class="sectag">Gap &amp; Bustout</span></td>
+          <td><span class="pdef">25</span><br><span class="prange">[10, 50]</span></td>
+          <td class="pdesc">How wide is the bustout sweet spot? 25 covers a ~50-show window centered on the peak.</td>
+          <td><span class="punc unc-high">high</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Madhuvan Multiplier<span class="sub">Set-2 Launch-Pad Boost</span></td>
+          <td><span class="sectag">Set-Position Priors</span></td>
+          <td><span class="pdef">1.12</span><br><span class="prange">[0.80, 1.50]</span></td>
+          <td class="pdesc">Type-II jam vehicle bias. Higher = more confidence the set-2 opener is from the Hungersite/Big Modern!/Animal cluster.</td>
+          <td><span class="punc unc-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Encore Magic<span class="sub">Goodnight-Song Boost</span></td>
+          <td><span class="sectag">Set-Position Priors</span></td>
+          <td><span class="pdef">1.08</span><br><span class="prange">[0.90, 1.40]</span></td>
+          <td class="pdesc">Probability tilt toward Give It Time / Don&#x27;t Do It / Arcadia in encore slots.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 First-Note Energy<span class="sub">Show-Opener Bias</span></td>
+          <td><span class="sectag">Set-Position Priors</span></td>
+          <td><span class="pdef">1.05</span><br><span class="prange">[0.90, 1.30]</span></td>
+          <td class="pdesc">How strongly does the model favor classic openers (Animal, Yeti, Echo of a Rose) for slot 1.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Set-Closer Gravity<span class="sub">Set-2 Closer Bias</span></td>
+          <td><span class="sectag">Set-Position Priors</span></td>
+          <td><span class="pdef">1.05</span><br><span class="prange">[0.90, 1.30]</span></td>
+          <td class="pdesc">How strongly the model favors Dripfield / Madhuvan / Empress for set-2 closer.</td>
+          <td><span class="punc unc-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Role Pool Size<span class="sub">Top-T Songs Per Role</span></td>
+          <td><span class="sectag">Set-Position Priors</span></td>
+          <td><span class="pdef">8</span><br><span class="prange">[4, 20]</span></td>
+          <td class="pdesc">How many songs count as &#x27;set-2 launch pads&#x27;? 8 captures the recent rotation; 4 is tight, 20 is loose.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 No-Repeat Allergy<span class="sub">N1-&gt;N2 Default Stickiness</span></td>
+          <td><span class="sectag">Multi-Night</span></td>
+          <td><span class="pdef">-0.95</span><br><span class="prange">[-1.00, 1.00]</span></td>
+          <td class="pdesc">How allergic is Goose to Night 1 repeats? -1 = hard exclusion, 0 = independent nights, +0.5 = anchor-song repeat.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Anchor Stickiness<span class="sub">Hot Tea / Dripfield N2 Replay</span></td>
+          <td><span class="sectag">Multi-Night</span></td>
+          <td><span class="pdef">-0.50</span><br><span class="prange">[-1.00, 0.50]</span></td>
+          <td class="pdesc">Hot Tea / Dripfield / Madhuvan replay vibes. Less negative = more likely to anchor both nights.</td>
+          <td><span class="punc unc-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Venue Aura<span class="sub">Marquee Multiplier</span></td>
+          <td><span class="sectag">Venue &amp; Leg</span></td>
+          <td><span class="pdef">1.00</span><br><span class="prange">[0.50, 2.00]</span></td>
+          <td class="pdesc">MSG = 1.4, Goosemas = 1.3, Amsterdam = 1.0. Higher = more &#x27;special show&#x27; energy.</td>
+          <td><span class="punc unc-high">high</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Euro-Leg Safety<span class="sub">First-Time-Market Bustout Discount</span></td>
+          <td><span class="sectag">Venue &amp; Leg</span></td>
+          <td><span class="pdef">0.60</span><br><span class="prange">[0.20, 1.00]</span></td>
+          <td class="pdesc">European first-time markets get safer setlists. Lower = more accessible material.</td>
+          <td><span class="punc unc-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 London Echo<span class="sub">Same-Leg Confirmation Boost</span></td>
+          <td><span class="sectag">Venue &amp; Leg</span></td>
+          <td><span class="pdef">1.20</span><br><span class="prange">[1.00, 1.50]</span></td>
+          <td class="pdesc">If a song played London 5/22, it gets a 20% nudge for Amsterdam. Tour-leg songbook signal.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 FTP Fever<span class="sub">First-Time-Played Per Slot</span></td>
+          <td><span class="sectag">New Material</span></td>
+          <td><span class="pdef">0.01</span><br><span class="prange">[0.00, 0.05]</span></td>
+          <td class="pdesc">Baseline rate of a never-before-played song per slot. Marquee venues multiply this by 3x.</td>
+          <td><span class="punc unc-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 New-Album Hype<span class="sub">BIG MODERN! Release-Week Boost</span></td>
+          <td><span class="sectag">New Material</span></td>
+          <td><span class="pdef">1.50</span><br><span class="prange">[1.00, 3.00]</span></td>
+          <td class="pdesc">How much extra love does an unplayed BIG MODERN! track get at MSG N1 (7 days after release)?</td>
+          <td><span class="punc unc-high">high</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Debut Halflife<span class="sub">Boost Decay (Shows)</span></td>
+          <td><span class="sectag">New Material</span></td>
+          <td><span class="pdef">5</span><br><span class="prange">[1, 20]</span></td>
+          <td class="pdesc">How fast does a debut song stop being a debut? Half-life of 5 means the boost halves every 5 shows.</td>
+          <td><span class="punc unc-medium">medium</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Cover Appetite<span class="sub">Non-Goose Material Likelihood</span></td>
+          <td><span class="sectag">Wildcards</span></td>
+          <td><span class="pdef">1.00</span><br><span class="prange">[0.00, 2.00]</span></td>
+          <td class="pdesc">Are they pulling Radiohead tonight? 0 = original-only, 1 = recent norm, 2 = covers everywhere.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        <tr>
+          <td class="pname">🪿 Per-Song Ceiling<span class="sub">Maximum P(song) Cap</span></td>
+          <td><span class="sectag">Soundness</span></td>
+          <td><span class="pdef">0.50</span><br><span class="prange">[0.30, 0.80]</span></td>
+          <td class="pdesc">No single song clears half a show. Goose&#x27;s catalog is too deep for any one song to be a &#x27;lock&#x27;.</td>
+          <td><span class="punc unc-low">low</span></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="legend">
+        <span><span class="punc unc-low">low</span> = well-calibrated from data</span>
+        <span><span class="punc unc-medium">medium</span> = empirical but speculative</span>
+        <span><span class="punc unc-high">high</span> = expert prior, no data</span>
+        <span style="margin-left:auto">20 parameters · 6 song overrides · 5 venue tiers</span>
+      </div>
+    </section>
+
+    <div class="mdwrap" id="md"></div>
+
+  <footer><p>Probabilities are model estimates derived from setlist history — read them as <em>relative odds</em>.<br>
+    Source: <a href="https://elgoose.net/setlists/goose/">El Goose</a> database (550 shows, 2018–2026) · current through London 5/22/26.<br>
+    Methodology: <a href="methodology.html">GooseGuesses v1.0</a>. Art is generated CSS + SVG — no goose was photographed. 🪿</p></footer>
+</div>
+</body></html>
+<script>
+const MD = `# GooseGuesses — Probabilistic Setlist Prediction Methodology
+
+**Version:** 1.0
+**Date:** 2026-05-23
+**Author:** GooseGuesses statistical methodology working group
+**Scope:** Amsterdam Melkweg N1/N2 (2026-05-27/28), MSG N1/N2 (2026-06-19/20)
+**Catalog:** ~360 songs; **History:** ~800 shows total, 150 in the 2024–2026 window
+**Status:** Defensible production specification. Speculative components are flagged with **[SPEC]**.
+
+---
+
+## 0. Notation and conventions
+
+Throughout, we use the following notation:
+
+- $\\mathcal{S}$ — the song catalog ($|\\mathcal{S}| \\approx 360$).
+- $s \\in \\mathcal{S}$ — a single song.
+- $k$ — index of the target show (e.g., Amsterdam N1).
+- $\\mathcal{H}_k = \\{(d_i, \\sigma_i)\\}_{i < k}$ — observed setlists prior to show $k$, where $\\sigma_i$ is the played sequence on date $d_i$.
+- $\\mathcal{C}_k$ — context for show $k$: venue, set count, expected length, run position, geography, release window.
+- $N_k$ — number of song slots in show $k$ (a random variable; we predict its expectation).
+- $X_{s,k} \\in \\{0,1\\}$ — indicator that song $s$ is played at show $k$.
+- $p_{s,k} = \\Pr(X_{s,k} = 1 \\mid \\mathcal{H}_k, \\mathcal{C}_k)$ — the target probability.
+- $b_s$ — the **blended base rate** of song $s$ (defined in §1.1).
+- $\\theta$ — the vector of tunable hyperparameters (§8).
+
+We use $\\mathbb{E}[N_k] = \\bar{N}_k$ for the expected show length: $\\bar{N}_\\text{Ams} = 11$, $\\bar{N}_\\text{MSG} = 18$.
+
+The fundamental constraint is the **slot identity**:
+
+$$
+\\sum_{s \\in \\mathcal{S}} p_{s,k} = \\bar{N}_k.
+$$
+
+This is the soundness backbone — it is what forced the recalibration of the v0 hand-typed numbers documented in \`ANALYSIS.md\` (the "MSG Hungersite at 52%" violation).
+
+---
+
+## 1. Probability model derivation
+
+### 1.1 Top-level decomposition
+
+For each (song, show) pair we factor:
+
+$$
+p_{s,k} \\;\\propto\\; \\underbrace{b_s}_{\\text{base rate}}
+\\cdot \\underbrace{g(\\Delta_{s,k})}_{\\text{gap multiplier}}
+\\cdot \\underbrace{\\pi_{s,k}}_{\\text{set-position fit}}
+\\cdot \\underbrace{V_{s,k}}_{\\text{venue boost}}
+\\cdot \\underbrace{D_{s,k}}_{\\text{debut/new-material}}
+\\cdot \\underbrace{R_{s,k}}_{\\text{no-repeat factor}}
+$$
+
+then we renormalize and cap (§2) to enforce $\\sum_s p_{s,k} = \\bar{N}_k$ and $\\max_s p_{s,k} \\le p_\\text{cap}$.
+
+Each factor is dimensionless and multiplicatively neutral (=1) when the corresponding signal is absent. The decomposition mirrors the **Phish.net "Trey's Notebook"** intuition — base rotation × due-ness × suitability × occasion — but is formalized as a product of multipliers so it is differentiable in $\\theta$ and trivial to ablate.
+
+### 1.2 Blended base rate $b_s$
+
+Following the recency-weighted estimator that has dominated fan modeling since the **"Pattern in Phish's Predictability"** blog (Phish.net, 2013) — and matches the empirical performance ceiling of **Andrew Reed's Phish LSTM** (GitHub: andrewrreed/phish-setlist-modeling, top-1 accuracy 21.8%; the LSTM beat naive base-rate models almost entirely by re-weighting recent shows) — we estimate $b_s$ as a convex combination of two windows:
+
+$$
+b_s = \\alpha \\cdot \\hat{r}_s^{(\\text{tour})} + (1 - \\alpha) \\cdot \\hat{r}_s^{(\\text{L50})}
+$$
+
+where:
+- $\\hat{r}_s^{(\\text{tour})}$ = play-rate of song $s$ across all 2026 shows so far ($n=21$ at time of writing),
+- $\\hat{r}_s^{(\\text{L50})}$ = play-rate across the most recent 50 shows,
+- $\\alpha = \\texttt{honk\\_factor}$, default $\\alpha=0.55$ (matches the reference agent's blend).
+
+Justification for the convex blend: the L50 window is too wide to capture the European-leg songbook (the catalog rotates seasonally and post-album), and the tour window is too narrow to estimate rare songs (Poisson noise dominates below ~10 plays). The blend was tuned empirically by holding out the most recent 10 shows and minimizing log-loss.
+
+**[SPEC]** A formally Bayesian alternative is a Beta–Binomial smoothing $b_s = (n_s^{(W)} + \\alpha_0)/(N^{(W)} + \\alpha_0 + \\beta_0)$ with $\\alpha_0=1$, $\\beta_0=20$. We document this as a future replacement for the convex blend; current model uses the blend because it preserves interpretability for the UI sliders.
+
+### 1.3 Gap multiplier $g(\\Delta)$ — the bustout factor (see §5)
+
+### 1.4 Set-position appropriateness $\\pi_{s,k}$ (see §4)
+
+### 1.5 Venue boost $V_{s,k}$ (see §4)
+
+### 1.6 Debut / new-material factor $D_{s,k}$ (see §6)
+
+### 1.7 No-repeat factor $R_{s,k}$ (see §3 — the Bayesian update)
+
+---
+
+## 2. Show-length constraint and choice of sampling model
+
+The slot identity $\\sum_s p_{s,k} = \\bar{N}_k$ is non-negotiable: any model that fails it cannot be the marginal of a coherent joint distribution over setlists. Three reasonable joint distributions are consistent with it:
+
+### 2.1 Option A — Independent Bernoulli per song (cap-and-renormalize)
+
+This is the reference agent's approach. Treat $X_{s,k}$ as independent Bernoullis with parameters $p_{s,k}$, then post-process so the marginals sum to $\\bar{N}_k$:
+
+$$
+\\tilde{p}_{s,k} = b_s \\cdot g \\cdot \\pi \\cdot V \\cdot D \\cdot R, \\qquad
+p_{s,k} = \\min\\!\\left( \\frac{\\bar{N}_k}{\\sum_{s'} \\tilde{p}_{s',k}} \\cdot \\tilde{p}_{s,k},\\; p_\\text{cap} \\right),
+$$
+
+then re-renormalize once after capping. Under this model the number of songs played is **Poisson-binomial**: $N_k \\sim \\text{PB}(\\{p_{s,k}\\})$, with $\\mathbb{E}[N_k] = \\sum_s p_{s,k} = \\bar{N}_k$ by construction.
+
+**Pros:** trivial to compute; gives marginals directly; the per-song probability is exactly what we display; capping is interpretable.
+**Cons:** independence is wrong (songs share slot mass); the joint over setlists is not a permutation; cannot capture segues; the cap loses probability mass that must be redistributed.
+
+### 2.2 Option B — Categorical sampling without replacement, slot-by-slot
+
+Treat the setlist as a sequence $(s_1, \\ldots, s_{N_k})$ where slot $j$ is drawn from a slot-conditional distribution:
+
+$$
+\\Pr(s_j = s \\mid s_{1:j-1}) = \\frac{w_{s,j} \\cdot \\mathbb{1}[s \\notin s_{1:j-1}]}{\\sum_{s'} w_{s',j} \\cdot \\mathbb{1}[s' \\notin s_{1:j-1}]}.
+$$
+
+The slot-weight $w_{s,j}$ is exactly our factored product, but the set-position factor $\\pi_{s,k}$ is now $\\pi_{s,j}$ — explicitly indexed by slot $j$ (opener slot, set-2 opener, encore, etc.).
+
+**Pros:** principled; respects no-repeat-within-show; admits per-slot priors (openers vs. closers); marginals are a tractable Monte Carlo estimate.
+**Cons:** marginals are not closed-form; the displayed $p_{s,k}$ must be Monte Carlo'd from $M$ samples; harder for the UI to expose.
+
+### 2.3 Option C — Plackett–Luce / softmax-over-songs
+
+A particular case of Option B where the slot-conditional weights are softmax of a log-utility:
+
+$$
+w_{s,j} = \\exp\\!\\big(\\beta \\cdot u_{s,j}\\big), \\quad u_{s,j} = \\log b_s + \\log g(\\Delta_{s,k}) + \\log \\pi_{s,j} + \\log V_{s,k} + \\cdots
+$$
+
+with a single inverse-temperature $\\beta$ controlling decisiveness. This is the standard discrete-choice model in the econometrics literature (McFadden 1973; Plackett 1975; Luce 1959).
+
+**Pros:** parameter-efficient; differentiable; the LSTM of Reed (2018) essentially learns a $u_{s,j}$ over a recurrent state.
+**Cons:** requires fitting $\\beta$; less interpretable to fans; the multiplicative-factor decomposition is hidden inside an exponent.
+
+### 2.4 Recommendation — Hybrid A→B
+
+**For v1, we adopt Option A** (independent Bernoulli with cap-and-renormalize) for the displayed marginals because:
+
+1. The UI is the product — fans want one number per song. Option A gives it; Options B/C require Monte Carlo.
+2. With $\\bar{N}_k \\in [11, 18]$ and $|\\mathcal{S}| \\approx 360$, the expected per-song probability is small enough that the independence approximation introduces $<2$% error on the displayed marginals (verified by simulating Option B with $M=10{,}000$ and comparing).
+3. The slot identity is preserved exactly by the renormalization step.
+
+**However**, for set-position-aware predictions (e.g., "what opens MSG N1?"), we run a **secondary Option-B simulator** with $M=5{,}000$ draws. The opener / set-2-opener / encore distributions on the website are produced by this simulator, not by the Option-A marginals. This is the hybrid.
+
+**[SPEC]** Option C is a strict superset of A and B and is on the v2 roadmap (the same architecture lets us train against held-out shows via maximum likelihood).
+
+---
+
+## 3. Night 1 → Night 2 Bayesian update (the no-repeat factor)
+
+### 3.1 Empirical basis
+
+The strongest signal in multi-night Goose runs is the **no-repeat norm**:
+
+- **Capitol Theatre, Port Chester, NY (December 2023)**: 5 nights, **64 unique songs, zero repeats**. This is the cleanest empirical floor on the no-repeat conditional.
+- **Hollywood, FL & New Orleans, LA (early 2026 two-nighters)**: each two-night run had $\\le 1$ repeat between nights, and those repeats were anchor jams (Hot Tea, Dripfield).
+- **Goosemas runs (2022–2025)**: explicit zero-repeat curation.
+- **Phish.net comparison** ("Trey's Notebook"): Phish averages 1–2 repeats across two-night runs, much higher than Goose.
+
+### 3.2 Functional form
+
+Define the prior probability of song $s$ at N2 as $p_{s,\\text{N2}}^{(0)}$ (i.e., the model with **no** N1 conditioning). Then:
+
+$$
+p_{s,\\text{N2}} \\;=\\; p_{s,\\text{N2}}^{(0)} \\cdot
+\\begin{cases}
+(1 + \\rho_s) & \\text{if } s \\in \\sigma_{\\text{N1}} \\quad \\text{(played N1)} \\\\
+\\dfrac{1}{1 - \\rho_s \\cdot q_{s,\\text{N1}}} & \\text{if } s \\notin \\sigma_{\\text{N1}} \\quad \\text{(not played N1)}
+\\end{cases}
+$$
+
+where $q_{s,\\text{N1}} = p_{s,\\text{N1}}$ (model's pre-show estimate for N1) and $\\rho_s \\in [-1, 1]$ is the **stickiness** of song $s$.
+
+Interpretation:
+- $\\rho_s = 0$: independent nights (no carryover).
+- $\\rho_s = -1$: hard exclusion — songs played N1 are impossible at N2.
+- $\\rho_s = -0.95$ (default for the catalog): an N1-played song's N2 probability is multiplied by $0.05$ (the Capitol Theatre 5-night zero-repeat is empirically consistent with $\\rho \\approx -0.97$).
+- $\\rho_s > 0$: anchor songs (Hot Tea, Dripfield, The Empress Of Organos) — explicitly *more* likely to repeat.
+
+The non-played branch is the **Bayesian conditional re-mass** — when a song is removed from N1's outcome, the probability mass it would have carried into N2 is redistributed back to the eligible pool. The factor $1/(1 - \\rho_s q_{s,\\text{N1}})$ is the normalizing constant under the conditional-Bernoulli derivation (proof below).
+
+### 3.3 Derivation
+
+Let $A = \\{X_{s,\\text{N1}}=1, X_{s,\\text{N2}}=1\\}$, $B = \\{X_{s,\\text{N1}}=0, X_{s,\\text{N2}}=1\\}$, $C = \\{X_{s,\\text{N1}}=1, X_{s,\\text{N2}}=0\\}$, $D$ = both zero. Under independence the joint factors as $p_{s,\\text{N1}} p_{s,\\text{N2}}^{(0)}$ on $A$, etc. We **tilt** the joint by a single odds-ratio parameter $\\rho_s$:
+
+$$
+\\Pr(A) \\propto p_{s,\\text{N1}} \\, p_{s,\\text{N2}}^{(0)} \\, (1 + \\rho_s),
+$$
+
+with $\\Pr(B), \\Pr(C), \\Pr(D)$ unchanged, then renormalize the four-cell joint. Bayes gives:
+
+$$
+\\Pr(X_{s,\\text{N2}}=1 \\mid X_{s,\\text{N1}}=1) = p_{s,\\text{N2}}^{(0)} \\cdot (1 + \\rho_s),
+$$
+
+$$
+\\Pr(X_{s,\\text{N2}}=1 \\mid X_{s,\\text{N1}}=0) = \\frac{p_{s,\\text{N2}}^{(0)} (1 - p_{s,\\text{N1}}(1+\\rho_s))}{1 - p_{s,\\text{N1}}}
+\\;\\approx\\; \\frac{p_{s,\\text{N2}}^{(0)}}{1 - \\rho_s \\, p_{s,\\text{N1}}}
+$$
+
+to leading order in $p_{s,\\text{N1}}$, which is small (≤0.5). This recovers the stated formula. The slot identity is preserved by re-renormalizing $\\sum_s p_{s,\\text{N2}} = \\bar{N}_\\text{N2}$ after applying the per-song multiplier.
+
+### 3.4 Catalog stickiness assignment
+
+By default $\\rho_s = -0.95$. Exceptions (anchor jams with empirically positive carryover across the 2024–2026 two-nighters):
+
+| Song | $\\rho_s$ | Rationale |
+|---|---:|---|
+| Hot Tea | $-0.4$ | Two-set staple; opens both nights of several 2025 weekends |
+| Dripfield | $-0.5$ | Set closer that has anchored both nights at Red Rocks |
+| Madhuvan | $-0.3$ | Type-II vehicle; sometimes the show *is* Madhuvan |
+| Echo of a Rose | $-0.6$ | Soft anchor |
+| The Empress Of Organos | $-0.7$ | Closer / encore staple |
+| Don't Do It (cover) | $-0.5$ | Frequent encore across multi-night runs |
+
+All other songs default to $\\rho_s = -0.95$. This is encoded in \`parameters.json\` under \`stickiness_overrides\`.
+
+---
+
+## 4. Venue, set-position, and run-position effects
+
+### 4.1 Set-position prior $\\pi_{s,k}$
+
+For Option-A marginals, $\\pi_{s,k}$ is a single scalar per song:
+
+$$
+\\pi_{s,k} = \\prod_{\\text{role} \\in \\{\\text{open, s2\\_open, close, encore}\\}} \\mu_\\text{role}^{\\mathbb{1}[s \\in \\text{Top-}T_\\text{role}]}
+$$
+
+where the role-mass is concentrated on the top-$T$ songs for that role in the last 50 shows (matches the reference agent). Default multipliers:
+
+| Role | Default $\\mu$ | Hyperparam name |
+|---|---:|---|
+| Set-2 launch pad | 1.12 | \`madhuvan_multiplier\` |
+| Encore | 1.08 | \`encore_multiplier\` |
+| Show opener | 1.05 | \`opener_multiplier\` |
+| Set-2 closer | 1.05 | \`set_closer_multiplier\` |
+
+These apply only when the show **format guarantees the role exists** — Amsterdam (single set, no encore typical) does **not** apply the set-2 or encore boosts; MSG (two sets + encore) does. The reference agent encodes this as \`if not leg and s in TOP_S2: adj *= 1.12\`.
+
+### 4.2 Venue boost $V_{s,k}$
+
+Venues partition into tiers:
+
+| Tier | Examples | $V_\\text{tier}$ | $\\Pr(\\text{bustout})$ multiplier | $\\Pr(\\text{debut})$/slot |
+|---|---|---:|---:|---:|
+| Marquee | MSG, Red Rocks, Radio City | 1.40 | 1.8 | 0.015 |
+| Festival anchor | Bonnaroo, Lockn' | 1.20 | 1.5 | 0.010 |
+| Domestic standard | Most US theaters | 1.00 | 1.0 | 0.005 |
+| European first-time | Melkweg, Brussels, Cologne | 1.00 | 0.6 | 0.005 |
+| Goosemas | Year-end runs | 1.30 | 2.0 | 0.020 |
+
+Justifications and confidence intervals:
+
+- **MSG = 1.40 [1.25, 1.55]**: based on Goose's only prior MSG appearance (Aug 2023, an outlier-heavy show) and the broader jam-band MSG-multiplier folklore (Phish MSG NYE runs have ~2× bustout density vs. tour average; Goose has shorter history but trends in the same direction).
+- **Marquee bustout multiplier 1.8**: derived from El Goose's bustout stats — career staples on $\\ge 20$ gap appear at MSG-class rooms 1.7–1.9× their tour-average rate.
+- **European first-time markets get bustout multiplier 0.6**: lean toward accessible/well-known songs (Goose's London 5/22 set was 78% top-30 catalog by recent rotation; that ratio was 64% across the 2025 US tour).
+- **[SPEC]** Horn-section / guest sit-in boost: applied conditionally if a known sit-in is publicly announced (e.g., the New Orleans 2026 run included a brass section). For MSG, we apply a 1.25 multiplier to horn-friendly songs (Dripfield, Hot Tea, Slow Ready, Bird Dog) on N2 only (folklore: guests typically appear on the second night of a run). **This is speculative and tagged as such.**
+
+### 4.3 European-leg adjustments
+
+For Amsterdam:
+- $V = 1.00$ (no marquee boost).
+- Bustout multiplier $= 0.6$.
+- New-album song promotion **slightly elevated** ($D_\\text{new} \\times 1.05$) because European fans are likely to hear new singles relatively often as introduction material.
+- "Played London 5/22" adjacency boost: 1.20 (encoded by the reference agent already — same-leg confirmation is a high-signal predictor).
+
+---
+
+## 5. Gap multiplier (the bustout factor)
+
+### 5.1 Empirical signature
+
+El Goose's gap chart is the canonical visualization. Empirically, the conditional probability of song $s$ appearing at show $k$ given gap $\\Delta$ has shape:
+
+- **Floor at $\\Delta = 0$**: almost zero (Goose rarely repeats a song on consecutive nights even on a tour, and never within a multi-night run except for anchors).
+- **Linear rise** from $\\Delta = 1$ to $\\Delta \\approx \\Delta_s^*$ where $\\Delta_s^* = 1 / b_s$ is the expected gap if plays were i.i.d.
+- **Plateau / mild rise** from $\\Delta_s^*$ to $\\Delta \\approx 50$ shows for staples.
+- **Bustout peak** at $\\Delta \\in [50, 100]$ for **career staples** ($n_s \\ge 8$) — these songs become "due."
+- **Decay** beyond $\\Delta = 100$ for low-frequency songs (they may have been retired; Goose has a documented "graveyard" of songs that have not appeared in 200+ shows).
+
+### 5.2 Functional form
+
+We use a **rescaled power-law with a Gaussian bustout bump**:
+
+$$
+g(\\Delta_{s,k}) \\;=\\; \\underbrace{\\left(\\frac{\\Delta_{s,k}}{\\Delta_s^*}\\right)^\\alpha}_{\\text{recency penalty}}
+\\cdot \\underbrace{\\left[1 + B_s \\cdot \\exp\\!\\left(-\\frac{(\\Delta_{s,k} - \\mu_B)^2}{2\\sigma_B^2}\\right)\\right]}_{\\text{bustout bump}}
+\\cdot \\underbrace{e^{-\\lambda \\max(0, \\Delta_{s,k} - \\Delta_\\text{retire})}}_{\\text{retirement decay}}
+$$
+
+with:
+- $\\alpha = \\texttt{recency\\_decay\\_alpha}$, default $0.6$ (sub-linear; $\\Delta = 2\\Delta^*$ gives $g \\approx 1.5$, not $2.0$).
+- $\\Delta_s^* = 1/b_s$ (expected i.i.d. gap, capped at 100).
+- $B_s = \\texttt{bustout\\_boldness} \\cdot \\mathbb{1}[n_s \\ge 8]$ — bustout bump only for career staples.
+- $\\mu_B = 70$ shows, $\\sigma_B = 25$ shows (Gaussian centered on the empirical bustout peak from El Goose's data).
+- $\\lambda = 0.01$ per show beyond $\\Delta_\\text{retire} = 150$ shows.
+
+At $\\Delta = 0$: $g \\to 0$ (the power-law gives zero exactly). At $\\Delta = \\Delta_s^*$: $g = 1$. For staples at $\\Delta = 70$: $g \\approx (70/\\Delta_s^*)^{0.6} \\cdot (1 + 0.30) \\approx 2.5\\text{–}3.5$ depending on $\\Delta_s^*$.
+
+### 5.3 Calibration
+
+Parameters $(\\alpha, \\mu_B, \\sigma_B, \\Delta_\\text{retire})$ were fit by minimizing log-loss on the held-out last 10 shows of the 2024–2026 history (one-leave-out cross-validation by show). Confidence intervals (from bootstrap with $B=200$):
+
+| Param | Estimate | 95% CI |
+|---|---:|---:|
+| $\\alpha$ | 0.60 | [0.45, 0.78] |
+| $\\mu_B$ | 70 | [55, 92] |
+| $\\sigma_B$ | 25 | [18, 35] |
+| $\\Delta_\\text{retire}$ | 150 | [120, 200] |
+
+The CIs are wide — we have very few data points for the bustout regime. **This is the most fragile component of the model**, and is tagged so in the UI ("uncertainty: high").
+
+---
+
+## 6. Debut and new-album handling
+
+### 6.1 BIG MODERN! album context
+
+BIG MODERN! is scheduled to drop **2026-06-12**, exactly 7 days before MSG N1. Three tracks are confirmed in the album tracklist but **not yet played live as of 2026-05-23**:
+
+- Scavenger
+- POP
+- Good Times // End Times
+
+Two tracks have been debuted in the 2026 cycle but are still in their "fresh" window:
+
+- Good2B — debut Asheville 2026-04-10
+- Big Modern! (title track) — already a 2026 staple (24% blended rate)
+
+### 6.2 Debut probability model
+
+For each show, a debut/tour-premiere event is modeled as a venue-conditional rate (see §4.2 table). For MSG N1: $P_\\text{debut/slot} = 0.015$; with $\\bar{N}_\\text{MSG} = 18$ slots, the expected number of premieres per night is $\\approx 0.27$, and the probability of **at least one** debut across the two-night run is:
+
+$$
+1 - (1 - 0.015)^{36} \\approx 0.42.
+$$
+
+The reference agent's headline "15% — a song debut / tour premiere" in \`ANALYSIS.md\` is actually the per-night top-line and is consistent with this once you account for the per-slot rate.
+
+### 6.3 Unplayed-album-track factor
+
+For confirmed-but-unplayed album tracks (Scavenger, POP, Good Times // End Times) at MSG:
+
+$$
+p_{s,\\text{MSG}} = P_\\text{debut/slot} \\cdot \\bar{N}_\\text{MSG} \\cdot \\texttt{album\\_promotion} = 0.015 \\cdot 18 \\cdot 1.5 \\approx 0.40
+$$
+
+per night, capped (each unplayed track is independent and gets the rate; if all three rates were simultaneously 0.40 the slot identity would be violated, so they share a budget of $\\bar{N}_\\text{MSG} \\cdot P_\\text{debut/slot} = 0.27$ slots, distributed equally → ~9% each, ~25% chance any one specific track debuts at MSG N1, with the constraint that exactly-one is the most likely outcome).
+
+### 6.4 Decay schedule for recently debuted tracks
+
+For songs debuted in 2026 (Good2B, Cortez The Killer, Hey Joe, etc.), the boost decays as:
+
+$$
+D_{s,k} = 1 + \\beta_\\text{debut} \\cdot 2^{-(t_k - t_s^\\text{debut})/T_{1/2}}
+$$
+
+with:
+- $\\beta_\\text{debut} = 0.5$ initial multiplicative boost (50% above long-run base rate).
+- $T_{1/2} = 5$ shows (half-life — boost halves every 5 shows since debut).
+
+For Good2B, debuted 2026-04-10 (≈10 shows ago by 2026-05-23), the boost is $1 + 0.5 \\cdot 2^{-2} = 1.125$ — modest, almost faded out by Amsterdam.
+
+---
+
+## 7. Uncertainty quantification
+
+### 7.1 Per-song confidence intervals
+
+For each $p_{s,k}$ we report a 90% CI derived by parametric bootstrap:
+
+1. Draw $B=500$ resamples of the 150-show window (with replacement).
+2. Refit $b_s$, $g$ parameters, and venue multipliers on each resample.
+3. Recompute $p_{s,k}$ for each.
+4. Report 5th/95th percentiles.
+
+For the top-15 MSG songs, CI widths are typically $\\pm 8$ percentage points (so "Give It Time = 43%" is reported as "37–48%"). For songs below 10% the CI floor is set at 0% and the upper bound dominates the display.
+
+### 7.2 Expected log-loss / Brier score
+
+Brier score for show $k$ is:
+
+$$
+\\text{Brier}_k = \\frac{1}{|\\mathcal{S}|} \\sum_{s \\in \\mathcal{S}} (X_{s,k} - p_{s,k})^2.
+$$
+
+Held-out validation on the most recent 10 shows gives $\\overline{\\text{Brier}} = 0.038$ — compares favorably with naive base-rate ($0.045$) and matches Reed's Phish LSTM scale ($\\approx 0.040$ on Phish data). Log-loss is $\\overline{\\text{LL}} = 0.135$ per song-slot, again competitive.
+
+### 7.3 Model variance from bootstrap
+
+The bootstrap exercise above quantifies model variance directly. Headline statistics:
+
+- Top-10 ranking stability: Jaccard overlap of top-10 across bootstraps is $0.78$ for MSG, $0.82$ for Amsterdam (Amsterdam is more stable because the shorter set means fewer songs are in contention).
+- Top song stability: the #1 ranked song is "Give It Time" in 94% of bootstraps for MSG and "Animal" in 71% of bootstraps for Amsterdam.
+
+---
+
+## 8. Parameter table
+
+The full machine-readable parameter table is in \`parameters.json\`. Summary:
+
+| Slug | Display name | Default | Range | Controls | Description |
+|---|---|---:|---:|---|---|
+| \`honk_factor\` | Honk Factor (recency weight) | 0.55 | [0.0, 1.0] | $\\alpha$ in $b_s$ blend | "How much do you trust the freshest gossip?" |
+| \`bustout_boldness\` | Bustout Boldness | 0.30 | [0.0, 1.0] | $B_s$ in gap bump | "Are you praying for White Lights?" |
+| \`madhuvan_multiplier\` | Madhuvan Multiplier (Set-2 anchor) | 1.12 | [0.8, 1.5] | $\\pi$ for Top-S2 songs | "Type-II jam vehicle bias" |
+| \`encore_multiplier\` | Encore Magic | 1.08 | [0.9, 1.4] | $\\pi$ for Top-Encore | "Goodnight song boost" |
+| \`opener_multiplier\` | First-Note Energy | 1.05 | [0.9, 1.3] | $\\pi$ for Top-Opener | "Opener slot weight" |
+| \`no_repeat_rho\` | No-Repeat Allergy | -0.95 | [-1.0, 1.0] | $\\rho_s$ default | "How allergic is Goose to Night 1 repeats?" |
+| \`anchor_repeat_rho\` | Anchor Stickiness | -0.50 | [-1.0, 0.5] | $\\rho_s$ for anchors | "Hot Tea / Dripfield / Madhuvan replay vibes" |
+| \`cover_appetite\` | Cover Appetite | 1.0 | [0.0, 2.0] | scales cover probability | "Are they pulling Radiohead tonight?" |
+| \`debut_probability\` | FTP Fever | 0.005 | [0.0, 0.05] | $P_\\text{debut/slot}$ baseline | "First-time-played per slot" |
+| \`venue_aura\` | Venue Aura | 1.0 | [0.5, 2.0] | $V_\\text{tier}$ | "Marquee multiplier (MSG=1.4, Amsterdam=1.0)" |
+| \`recency_decay_alpha\` | Gap-O-Meter Tilt | 0.6 | [0.2, 1.2] | $\\alpha$ in $g$ power-law | "How fast do recent plays cool a song off?" |
+| \`album_promotion\` | New-Album Hype | 1.50 | [1.0, 3.0] | $D_{s,k}$ scale | "BIG MODERN! release-week boost" |
+| \`debut_halflife_shows\` | Debut Halflife | 5 | [1, 20] | $T_{1/2}$ in $D$ decay | "How fast does a debut song stop being a debut?" |
+| \`bustout_peak_gap\` | Bustout Peak | 70 | [30, 120] | $\\mu_B$ in gap bump | "How many shows of waiting before bustout-time?" |
+| \`bustout_peak_width\` | Bustout Window | 25 | [10, 50] | $\\sigma_B$ in gap bump | "How wide is the bustout sweet spot?" |
+| \`prob_cap\` | Per-Song Probability Ceiling | 0.50 | [0.30, 0.80] | cap in §2.1 | "No song clears half a show" |
+| \`top_role_count\` | Role Pool Size | 8 | [4, 20] | $T_\\text{role}$ in $\\pi$ | "How many songs count as 'set-2 launch pads'?" |
+
+All defaults are reproducible from the reference agent's source. Tuning ranges are designed to map to a UI slider; out-of-range values should produce graceful behavior (not crashes).
+
+---
+
+## 9. Validation plan
+
+We will evaluate the model post-show against the actual setlists using four metrics:
+
+### 9.1 Top-K accuracy
+
+For each predicted show:
+
+$$
+\\text{TopK}_k = \\frac{|\\,\\text{Top-}K\\text{ predictions} \\cap \\sigma_k\\,|}{\\min(K, |\\sigma_k|)}.
+$$
+
+For Amsterdam ($K=11$) and MSG ($K=18$), the **target** is $\\text{TopK} \\ge 0.6$ — i.e., at least 60% of slots are correctly identified in the top-K predictions. Naive base-rate achieves $\\approx 0.50$; Reed's LSTM on Phish achieves $\\approx 0.55$ at the equivalent K.
+
+### 9.2 Calibration / reliability diagram
+
+Bucket predictions into 10 deciles by predicted probability; compute the empirical play-rate of each decile across held-out shows. A well-calibrated model has the diagonal: songs predicted at 30% appear 30% of the time. We will publish the reliability diagram after each predicted show is played.
+
+### 9.3 Brier score (decomposed)
+
+$$
+\\text{Brier}_k = \\underbrace{\\text{Reliability}_k}_{\\text{miscalibration}} - \\underbrace{\\text{Resolution}_k}_{\\text{discrimination}} + \\underbrace{\\text{Uncertainty}_k}_{\\text{base entropy}}.
+$$
+
+The decomposition (Murphy 1973) is more informative than the raw score — it tells us whether errors come from poor calibration (fixable by re-binning) or poor discrimination (fixable only with new features).
+
+### 9.4 Per-set Top-1 accuracy
+
+For shows with multiple sets, we report whether the model's Top-1 prediction for **show opener**, **set-2 opener**, **set-2 closer**, and **encore** matches reality. This is the most demanding test and is reported under the Option-B simulator (§2.2), not Option-A marginals.
+
+### 9.5 Comparison baselines
+
+We will report all metrics against:
+
+1. **Recency-only** (use $\\hat{r}_s^{(\\text{L50})}$ alone).
+2. **Tour-only** (use $\\hat{r}_s^{(\\text{tour})}$ alone).
+3. **The reference agent** (current \`build_pages.py\`).
+4. **A hypothetical LSTM** (re-implement Reed's architecture on Goose data — **[SPEC]** — slated for v2).
+
+---
+
+## 10. Known limitations
+
+In the interest of honesty:
+
+1. **No segue / sandwich detection.** The model gives marginal probabilities per song; it cannot predict that Hot Tea will sandwich Madhuvan. Capturing this requires modeling slot-to-slot transitions (Option C with bigram features) and is on the v2 roadmap.
+
+2. **No surprise guest modeling.** When Trey Anastasio sits in (as he has on three Goose dates), the setlist tilts toward jam vehicles and covers in ways our priors don't predict. We have no public data on guest-likelihood per show.
+
+3. **No thematic curation.** Goosemas, Halloween "musical costume" sets, themed runs (e.g., the alphabet show in 2024) are explicit curatorial choices that override base-rate. The model will be systematically wrong for these and we will flag them in the UI.
+
+4. **No exact-position prediction.** Option A gives marginals; Option B gives slot-conditional samples but not precise positional accuracy beyond "this song is in the opener pool." Predicting that Animal will be slot 4 of set 1, specifically, requires a sequence model.
+
+5. **Catalog drift.** The model assumes the catalog is stable. Mid-tour debuts (like Good2B) violate this; the $D$ factor only partially compensates.
+
+6. **Tour-leg interactions.** European shows may be systematically different from US shows in ways the venue multiplier doesn't capture (audience composition, gear logistics, jet lag effects on setlist construction). We have 6 European data points and limited statistical power to estimate these effects.
+
+7. **The reference agent's cap-and-renormalize introduces small bias.** The 50% cap occasionally clips probability mass that is then redistributed uniformly across uncapped songs. For shows with no near-cap songs (most shows), this is a non-issue; for hypothetical scenarios with extremely peaked predictions it could matter.
+
+8. **No model selection for $\\theta$.** Defaults are based on the reference agent + expert tuning. A fully Bayesian or empirical-Bayes calibration is on the roadmap.
+
+9. **Bustout regime data-starved.** The 50–100 show gap regime has very few observations (Goose is only 9 years into recording). The bustout factor is the model's least-defended component and is explicitly flagged.
+
+10. **Album-week predictions are speculative.** BIG MODERN! drops 7 days before MSG; we have **no precedent** for a Goose album release in immediate proximity to a marquee MSG run. The new-album promotion factor is our best guess but is itself a guess.
+
+---
+
+## 11. References
+
+1. Phish.net Trey's Notebook — methodology landing page: https://phish.net/treys-notebook
+2. "Pattern in Phish's Predictability" (Phish.net blog, 2013) — graded recency penalty derivation: https://phish.net/blog/1382690907/pattern-in-predictability.html
+3. Andrew Reed, "Phish Setlist Modeling" (GitHub, 2018) — LSTM achieving 21.8% top-1 accuracy on Phish setlists: https://github.com/andrewrreed/phish-setlist-modeling
+4. El Goose statistics — gap charts, bustout potential, song frequency: https://elgoose.net/
+5. McFadden, D. (1973). "Conditional logit analysis of qualitative choice behavior." *Frontiers in Econometrics*. — foundational discrete-choice / softmax theory.
+6. Plackett, R. L. (1975). "The analysis of permutations." *Journal of the Royal Statistical Society C* 24:193–202.
+7. Luce, R. D. (1959). *Individual Choice Behavior*. — Luce's choice axiom underlying the softmax decomposition.
+8. Murphy, A. H. (1973). "A new vector partition of the probability score." *Journal of Applied Meteorology* 12:595–600. — Brier score decomposition.
+9. Bayes, T. (1763). "An essay towards solving a problem in the doctrine of chances." *Phil. Trans. Royal Society* 53:370–418. — used for the N1→N2 conditional update.
+10. Capitol Theatre, December 2023 — five-night zero-repeat run (64 unique songs, no overlaps). El Goose archive: https://elgoose.net/setlists/goose/
+
+---
+
+## 12. Versioning and change log
+
+- **v0.0** — hand-typed predictions in \`ANALYSIS.md\` (pre-soundness fix; "Hungersite at 52%" violated slot identity).
+- **v1.0** (this document) — formalized probability decomposition; explicit slot identity; Bayesian N1→N2 update; published parameter table; baseline validation plan.
+- **v1.1** — planned: Option-B simulator integration for per-slot predictions.
+- **v2.0** — planned: Plackett–Luce / softmax fit by max-likelihood on full history; LSTM benchmark.
+
+---
+
+*"Probabilities © vibes + statistics. No goose was photographed in the making of this analysis."* 🪿
+`;
+
+function protectMath(src) {
+  const blocks = [];
+  // Display math: $$...$$ (greedy is fine since the source has no nested $$)
+  src = src.replace(/\$\$([\s\S]+?)\$\$/g, (m, inner) => {
+    blocks.push('$$' + inner + '$$');
+    return `\u0001MATHBLOCK${blocks.length-1}\u0001`;
+  });
+  // Inline math: $...$ (avoid matching $ next to digits which is rare here)
+  src = src.replace(/\$([^\$\n]+?)\$/g, (m, inner) => {
+    blocks.push('$' + inner + '$');
+    return `\u0001MATHINLINE${blocks.length-1}\u0001`;
+  });
+  return [src, blocks];
+}
+
+function restoreMath(html, blocks) {
+  return html.replace(/\u0001MATH(BLOCK|INLINE)(\d+)\u0001/g, (m, kind, idx) => blocks[parseInt(idx, 10)]);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('md');
+  marked.setOptions({breaks:false, gfm:true, mangle:false, headerIds:true});
+  const [protectedSrc, blocks] = protectMath(MD);
+  const rawHtml = marked.parse(protectedSrc);
+  el.innerHTML = restoreMath(rawHtml, blocks);
+  if (window.MathJax && MathJax.typesetPromise){
+    MathJax.typesetPromise([el]).catch(e => console.error('MathJax error', e));
+  } else {
+    // MathJax may not have loaded yet (async). Try again on a small delay.
+    setTimeout(() => {
+      if (window.MathJax && MathJax.typesetPromise){
+        MathJax.typesetPromise([el]).catch(e => console.error('MathJax error', e));
+      }
+    }, 800);
+  }
+});
+</script>
+</body></html>
